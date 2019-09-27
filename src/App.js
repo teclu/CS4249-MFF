@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Ingredient from './components/Ingredient.js'
+import './css/App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // For testing purposes. More changes to come.
+    const ingredientNames = ['Apple', 'Banana', 'Cucumber', 'Durian', 'Fig', 'Gooseberry', 'Orange', 'Pineapple', 'Raspberry'];
+    const ingredientsToRender = [];
+
+    for (const [index, value] of ingredientNames.entries()) {
+        ingredientsToRender.push(
+            <Ingredient name={value} id={index} />
+        )
+    }
+
+    return (
+        <div className="App">
+            {ingredientsToRender}
+        </div>
+    );
 }
 
 export default App;
