@@ -1,0 +1,11 @@
+.SummaryCard{
+  position: fixed;
+  top: 2%;
+  right: 2%;
+  width: 20%;
+  height: auto;
+  max-height: 60%;
+  overflow-y: auto;
+  background-color: rgb(109, 224, 128);
+
+}
