@@ -1,0 +1,12 @@
+{
+  "fresh_produce": {
+    "vegetables": {
+      "leafy_greens": ["spinach", "lettuce"],
+      "guords": ["bitter_gourd", "winter_melon", "cucumber"]
+    },
+    "fruits":{
+      "stone_fruits": ["apricot", "peach", "plum"],
+      "berries": ["strawberry", "bluebery", "mulberry"]
+    }
+  }
+}
