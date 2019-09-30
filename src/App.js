@@ -64,7 +64,7 @@ class App extends React.Component {
           <div className="grid-container">
               <div className="tabs"></div>
               <div className="main">{ingredientsToRender}</div>
-              <SummaryCard className="SummaryCard" ingredientList={this.state.selectedItems}/>
+              <SummaryCard className="right-pane" ingredientList={this.state.selectedItems}/>
           </div>
       );
     }

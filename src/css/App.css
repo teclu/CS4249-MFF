@@ -1,17 +1,15 @@
 .main {
   grid-area: main;
  }
-.SummaryCard { grid-area: summary-card; }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 10% auto 20% ;
+  grid-template-columns: 10% 70%;
   grid-template-areas:
-    "tabs main summary-card";
+    "tabs main";
   grid-gap: 10px
 }
 
 .grid-container > div {
-  background-color: rgba(0, 255, 0, 0.3);
   padding: 10px;
 }

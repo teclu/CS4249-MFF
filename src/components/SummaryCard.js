@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Ingredient.css';
+import '../css/SummaryCard.css';
 
 class SummaryCard extends React.Component {
 
@@ -7,7 +7,7 @@ class SummaryCard extends React.Component {
       const items = this.props.ingredientList.map(item => <div>{item}</div>)
       console.log()
         return (
-            <div>
+            <div className="SummaryCard">
               {items}
             </div>
         );
