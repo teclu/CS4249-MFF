@@ -1,18 +1,16 @@
 .Ingredient {
     border: 1px solid #AAAAAA;
     padding: 10px;
-    width: 150px;
-    display: table-cell;
-    float: left;
-    margin-top: 5px;
-    margin-left: 5px;
+    width: 170px;
+    display: inline-block;
     cursor: pointer;
+    margin: 1%
 }
 
 .IngredientTitle {
     border: 0px;
     padding-left: 10px;
-    display: table-cell;
+    display: inline-block;
     vertical-align: middle;
 }
 
@@ -32,17 +30,18 @@ input[type="checkbox"] + label span.IngredientCheckbox {
     border-bottom-right-radius: 3px;
     width: 30px;
     height: 30px;
-    display: table-cell;
+    display: inline-block;
     background: #FFFFFF;
     color: #FFFFFF;
     transition: all .2s;
     text-align: center;
     vertical-align: middle;
-    font-size: 20px;
+    font-size: 0px;
 }
 
 input[type="checkbox"]:checked + label span.IngredientCheckbox {
     background: #399239;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #255825;
+    font-size: 20px;
 }
