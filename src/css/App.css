@@ -4,7 +4,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 10% 70%;
+  grid-template-columns: 10% 65%;
   grid-template-areas:
     "tabs main";
   grid-gap: 10px
