@@ -4,11 +4,11 @@ import '../css/SummaryCard.css';
 class SummaryCard extends React.Component {
 
     render() {
-      const items = this.props.ingredientList.map(item => <div>{item}</div>)
-      console.log()
+        const items = this.props.ingredientList.map(item => <div>{item}</div>)
+        console.log()
         return (
             <div className="SummaryCard">
-              {items}
+                {items}
             </div>
         );
     }
