@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
-import App from './App.js';
+import UI from './UI.js';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App menuLevels={1} />, document.getElementById('root'));
+import './css/index.css';
+
+ReactDOM.render(<UI />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

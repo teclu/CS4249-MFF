@@ -1,17 +1,21 @@
 .Ingredient {
-    border: 1px solid #AAAAAA;
-    padding: 10px;
-    width: 170px;
-    display: inline-block;
+    display: table-cell;
+    float: left;
     cursor: pointer;
-    margin: 1%
+    border: 1px solid #AAAAAA;
+    background: #FFFFFF;
+    padding: 10px;
+    width: 150px;
+    margin-top: 5px;
+    margin-left: 5px;
+    
 }
 
 .IngredientTitle {
+    display: table-cell;
+    vertical-align: middle;
     border: 0px;
     padding-left: 10px;
-    display: inline-block;
-    vertical-align: middle;
 }
 
 input[type="checkbox"]:checked + label span.IngredientTitle {
@@ -23,6 +27,12 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] + label span.IngredientCheckbox {
+    display: table-cell;
+    background: #FFFFFF;
+    color: #FFFFFF;
+    transition: all .2s;
+    text-align: center;
+    vertical-align: middle;
     border: 1px solid #CCCCCC;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -30,18 +40,11 @@ input[type="checkbox"] + label span.IngredientCheckbox {
     border-bottom-right-radius: 3px;
     width: 30px;
     height: 30px;
-    display: inline-block;
-    background: #FFFFFF;
-    color: #FFFFFF;
-    transition: all .2s;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 0px;
+    font-size: 20px;
 }
 
 input[type="checkbox"]:checked + label span.IngredientCheckbox {
     background: #399239;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #255825;
-    font-size: 20px;
 }
