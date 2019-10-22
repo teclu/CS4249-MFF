@@ -1,216 +1,216 @@
 {
-    "vegetables": {
-        "allium/bulbs": [
-            "garlic",
-            "green_onions",
-            "shallots",
-            "scallions",
-            "spring_onion"
+    "Vegetables": {
+        "Allium/Bulbs": [
+            "Garlic",
+            "Green Onions",
+            "Shallots",
+            "Scallions",
+            "Spring Onion"
         ],
-        "leafy_green": [
-            "bok_choy",
-            "spinach",
-            "lettuce",
-            "brussel_sprouts",
-            "cabbage",
-            "kale"
+        "Leafy Greens": [
+            "Bok Choy",
+            "Spinach",
+            "Lettuce",
+            "Brussel Sprouts",
+            "Cabbage",
+            "Kale"
         ],
-        "flowers": [
-            "artichokes",
-            "broccoli",
-            "cauliflower"
+        "Flowers": [
+            "Artichokes",
+            "Broccoli",
+            "Cauliflower"
         ],
-        "marrow/guords": [
-            "bitter_gourd",
-            "winter_melon",
-            "cucumber",
-            "butternut_squash",
-            "eggplant",
-            "pumpkin",
-            "zucchini"
+        "Marrow/Gourds": [
+            "Bitter Gourd",
+            "Winter Melon",
+            "Cucumber",
+            "Butternut Squash",
+            "Eggplant",
+            "Pumpkin",
+            "Zucchini"
         ],
-        "legumes/seeds": [
-            "sweet_corn",
-            "green_beans",
-            "french_beans",
-            "long_beans",
-            "peas",
-            "snow_peas",
-            "black_beans",
-            "chickpea_beans",
-            "kidney_beans",
-            "lima_beans"
+        "Legumes/Seeds": [
+            "Sweet Corn",
+            "Green Beans",
+            "French Beans",
+            "Long Beans",
+            "Peas",
+            "Snow Peas",
+            "Black Beans",
+            "Chickpea Beans",
+            "Kidney Beans",
+            "Lima Beans"
         ],
-        "peppers": [
-            "red_chilis",
-            "green_chilis",
-            "green_peppers",
-            "jalapenos_peppers",
-            "red_peppers",
-            "yellow_peppers"
+        "Peppers": [
+            "Red Chilis",
+            "Green Chilis",
+            "Green Peppers",
+            "Jalapenos Peppers",
+            "Red Peppers",
+            "Yellow Peppers"
         ],
-        "roots": [
-            "beetroot",
-            "carrot",
-            "turnip",
-            "daikon",
-            "radish"
+        "Roots": [
+            "Beetroot",
+            "Carrot",
+            "Turnip",
+            "Daikon",
+            "Radish"
         ],
-        "stems": [
-            "asparagus",
-            "celery"
+        "Stems": [
+            "Asparagus",
+            "Celery"
         ],
-        "tubers": [
-            "potatoes",
-            "sweet_potatoes",
-            "yam"
+        "Tubers": [
+            "Potatoes",
+            "Sweet Potatoes",
+            "Yam"
         ],
-        "fungi": [
-            "button_white",
-            "swiss_brown",
-            "enoki",
-            "oyster",
-            "portabello",
-            "shiitake",
-            "truffle"
+        "Fungi": [
+            "Button White",
+            "Swiss Brown",
+            "Enoki",
+            "Oyster",
+            "Portabello",
+            "Shiitake",
+            "Truffle"
         ]
     },
-    "fruits": {
-        "apples_and_pears": [
-            "apples",
-            "pears"
+    "Fruits": {
+        "Apples and Pears": [
+            "Apples",
+            "Pears"
         ],
-        "citrus": [
-            "grapefruit",
-            "lemons",
-            "limes",
-            "oranges"
+        "Citrus": [
+            "Grapefruit",
+            "Lemons",
+            "Limes",
+            "Oranges"
         ],
-        "stone_fruits": [
-            "apricots",
-            "peaches",
-            "plums",
-            "black_olives",
-            "green_olives"
+        "Stone Fruits": [
+            "Apricots",
+            "Peaches",
+            "Plums",
+            "Black Olives",
+            "Green Olives"
         ],
-        "tropical/exotic": [
-            "avocado",
-            "banana",
-            "coconut",
-            "mango",
-            "pineapple"
+        "Tropical/Exotic": [
+            "Avocado",
+            "Banana",
+            "Coconut",
+            "Mango",
+            "Pineapple"
         ],
-        "berries": [
-            "cherries",
-            "cranberries",
-            "grapes",
-            "strawberries",
-            "blueberries",
-            "mulberries",
-            "raspberries"
+        "Berries": [
+            "Cherries",
+            "Cranberries",
+            "Grapes",
+            "Strawberries",
+            "Blueberries",
+            "Mulberries",
+            "Raspberries"
         ],
-        "mellon": [
-            "honeydew_melon",
-            "rock_melon",
-            "watermelon"
+        "Melons": [
+            "Honeydew Melon",
+            "Rock Melon",
+            "Watermelon"
         ],
-        "tomatoes": [
-            "cherry_tomatoes",
-            "tomatoes"
+        "Tomatoes": [
+            "Cherry Tomatoes",
+            "Tomatoes"
         ]
     },
-    "dairy": {
-        "cheese": [
-            "blue_cheese",
-            "cheddar_cheese",
-            "colby_cheese",
-            "cream_cheese",
-            "feta_cheese",
-            "goat_cheese",
-            "monteray_jack_cheese",
-            "mozzarella_cheese",
-            "parmesan_cheese",
-            "provelone_cheese",
-            "ricotta_cheese",
-            "romano_cheese",
-            "swiss_cheese"
+    "Dairy": {
+        "Cheese": [
+            "Blue Cheese",
+            "Cheddar Cheese",
+            "Colby Cheese",
+            "Cream Cheese",
+            "Feta Cheese",
+            "Goat Cheese",
+            "Monteray jack Cheese",
+            "Mozzarella Cheese",
+            "Parmesan Cheese",
+            "Provelone Cheese",
+            "Ricotta Cheese",
+            "Romano Cheese",
+            "Swiss Cheese"
         ],
-        "cream": [
-            "cream",
-            "heavy_cream",
-            "sour_cream",
-            "whipped_cream"
+        "Cream": [
+            "Cream",
+            "Heavy Cream",
+            "Sour Cream",
+            "Whipped Cream"
         ],
-        "milk": [
-            "cow_milk",
-            "buttermilk",
-            "chocolate_milk",
-            "condensed_milk",
-            "evaporated_milk",
-            "half_and_half"
+        "Milk": [
+            "Cow Milk",
+            "Buttermilk",
+            "Chocolate Milk",
+            "Condensed Milk",
+            "Evaporated Milk",
+            "Half and Half"
         ]
     },
-    "meats": {
-        "beef": [
-            "brisket",
-            "corned_beef",
-            "ground_beef",
-            "ground_veal",
-            "roast_beef",
-            "steak"
+    "Meats": {
+        "Beef": [
+            "Brisket",
+            "Corned Beef",
+            "Ground Beef",
+            "Ground Veal",
+            "Roast Beef",
+            "Steak"
         ],
-        "poultry": [
-            "canned_chicken",
-            "chicken_breast",
-            "sliced_chicken",
-            "turkey_breast",
-            "turkey_legs"
+        "Poultry": [
+            "Canned Chicken",
+            "Chicken Breast",
+            "Sliced Chicken",
+            "Turkey Breast",
+            "Turkey Legs"
         ],
-        "pork": [
-            "bacon",
-            "ground_pork",
-            "ham",
-            "pepperoni",
-            "pork_chops",
-            "pork_roast",
-            "pork_tenderloin",
-            "prosciutto",
-            "salami"
+        "Pork": [
+            "Bacon",
+            "Ground Pork",
+            "Ham",
+            "Pepperoni",
+            "Pork Chops",
+            "Pork Roast",
+            "Pork Tenderloin",
+            "Prosciutto",
+            "Salami"
         ]
     },
-    "beverages": {
-        "liquor": [
-            "apple_cider",
-            "club/tonic",
-            "baileys",
-            "beer",
-            "brandy",
-            "gin",
-            "kahlua",
-            "pale_ale_(ex._amberbock)",
-            "rum",
-            "stout",
-            "tequila",
-            "vodka",
-            "whiskey"
+    "Beverages": {
+        "Liquor": [
+            "Apple Cider",
+            "Club/Tonic",
+            "Baileys",
+            "Beer",
+            "Brandy",
+            "Gin",
+            "Kahlua",
+            "Pale Ale (e.g. Amberbock)",
+            "Rum",
+            "Stout",
+            "Tequila",
+            "Vodka",
+            "Whiskey"
         ],
-        "juice": [
-            "apple_juice",
-            "lemonade",
-            "orange_juice",
-            "pineapple_juice",
-            "tomato_juice"
+        "Juice": [
+            "Apple Juice",
+            "Lemonade",
+            "Orange Juice",
+            "Pineapple Juice",
+            "Tomato Juice"
         ],
-        "soft_drinks": [
-            "cola",
-            "diet_cola",
-            "fruit_punch",
-            "ginger_ale",
-            "lemon/lime_soda"
+        "Soft Drinks": [
+            "Cola",
+            "Diet Cola",
+            "Fruit Punch",
+            "Ginger Ale",
+            "Lemon/Lime Soda"
         ],
-        "coffee": [
-            "coffee",
-            "instant_coffee"
+        "Coffee": [
+            "Coffee",
+            "Instant Coffee"
         ]
     }
 }
