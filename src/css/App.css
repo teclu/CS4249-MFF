@@ -1,6 +1,7 @@
-.main {
-    grid-area: main;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+.CategoryTitle {
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    border-bottom: 1px solid #000000;
 }
