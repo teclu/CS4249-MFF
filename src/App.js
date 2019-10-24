@@ -1,8 +1,8 @@
 import React from 'react';
-import Ingredient from './components/Ingredient.js';
-import SelectedList from './components/SelectedList.js';
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box';
+import MenuLevel0 from './components/menu_levels/MenuLevel0.js';
+import MenuLevel1 from './components/menu_levels/MenuLevel1.js';
+import MenuLevel2 from './components/menu_levels/MenuLevel2.js';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './css/App.css';
 
 class App extends React.Component {
@@ -36,37 +36,20 @@ class App extends React.Component {
     }
 
     render() {
-        const componentsToRender = [];
-        let index = 0;
-
-        // Create the Ingredient Components at the 0-Level
-        for (const category in this.ingredients) {
-            componentsToRender.push(
-                <div className="CategoryTitle">{category}</div>
-            );
-            for (const subcategory in this.ingredients[category]) {
-                for (const ingredientName of this.ingredients[category][subcategory]) {
-                    componentsToRender.push(
-                        <Ingredient key={index} ingredientName={ingredientName} id={index} handleSelection={this.handleSelection.bind(this)} />
-                    );
-                    index++;
-                }
-            }
-        }
-
         return (
-            <Box>
-                <Grid container spacing={1}>
-                    <Grid item xs={10}>
-                        <Grid container spacing={1}>
-                            {componentsToRender}
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <SelectedList selectedList={this.state.selectedList} />
-                    </Grid>
-                </Grid>
-            </Box>
+            <Router>
+                <Switch>
+                    <Route path="/MenuLevel0">
+                        <MenuLevel0 ingredients={this.ingredients} selectedList={this.state.selectedList} handleSelection={this.handleSelection.bind(this)} />
+                    </Route>
+                    <Route path="/MenuLevel1">
+                        <MenuLevel1 ingredients={this.ingredients} selectedList={this.state.selectedList} handleSelection={this.handleSelection.bind(this)} />
+                    </Route>
+                    <Route path="/MenuLevel2">
+                        <MenuLevel2 ingredients={this.ingredients} selectedList={this.state.selectedList} handleSelection={this.handleSelection.bind(this)} />
+                    </Route>
+                </Switch>
+            </Router>
         );
     }
 }
