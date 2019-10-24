@@ -39,15 +39,9 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/MenuLevel0">
-                        <MenuLevel0 ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />
-                    </Route>
-                    <Route path="/MenuLevel1">
-                        <MenuLevel1 ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />
-                    </Route>
-                    <Route path="/MenuLevel2">
-                        <MenuLevel2 ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />
-                    </Route>
+                    <Route path="/MenuLevel0" render={(props) => <MenuLevel0 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
+                    <Route path="/MenuLevel1" render={(props) => <MenuLevel1 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
+                    <Route path="/MenuLevel2" render={(props) => <MenuLevel2 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
                 </Switch>
             </Router>
         );
