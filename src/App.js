@@ -1,8 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import MenuLevel0 from './components/menu_levels/MenuLevel0.js';
 import MenuLevel1 from './components/menu_levels/MenuLevel1.js';
 import MenuLevel2 from './components/menu_levels/MenuLevel2.js';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './css/App.css';
 
 class App extends React.Component {
@@ -17,7 +17,7 @@ class App extends React.Component {
     /*
      * This function is passed down to any Ingredient so that it can modify the SelectedList.
      */
-    handleSelection(ingredientName, isSelected) {
+    handleIngredientSelection(ingredientName, isSelected) {
         this.setState(state => {
             const selectedListCopy = state.selectedList;
 
@@ -40,13 +40,13 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route path="/MenuLevel0">
-                        <MenuLevel0 ingredients={this.ingredients} selectedList={this.state.selectedList} handleSelection={this.handleSelection.bind(this)} />
+                        <MenuLevel0 ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />
                     </Route>
                     <Route path="/MenuLevel1">
-                        <MenuLevel1 ingredients={this.ingredients} selectedList={this.state.selectedList} handleSelection={this.handleSelection.bind(this)} />
+                        <MenuLevel1 ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />
                     </Route>
                     <Route path="/MenuLevel2">
-                        <MenuLevel2 ingredients={this.ingredients} selectedList={this.state.selectedList} handleSelection={this.handleSelection.bind(this)} />
+                        <MenuLevel2 ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />
                     </Route>
                 </Switch>
             </Router>

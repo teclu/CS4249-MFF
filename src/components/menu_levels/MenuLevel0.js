@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 class MenuLevel0 extends React.Component {
     render() {
         const componentsToRender = [];
-        let index = 0;
+        let ingredientIndex = 0;
 
         // Create the Ingredient Components at the 0-Level
         for (const category in this.props.ingredients) {
@@ -17,9 +17,9 @@ class MenuLevel0 extends React.Component {
             for (const subcategory in this.props.ingredients[category]) {
                 for (const ingredientName of this.props.ingredients[category][subcategory]) {
                     componentsToRender.push(
-                        <Ingredient key={index} ingredientName={ingredientName} id={index} handleSelection={this.props.handleSelection.bind(this)} />
+                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} />
                     );
-                    index++;
+                    ingredientIndex++;
                 }
             }
         }

@@ -17,8 +17,8 @@ class Ingredient extends React.Component {
      */
     handleChange(event) {
         this.setState(state => {
-            this.props.handleSelection(this.props.ingredientName, !state.isSelected);
-            return { isSelected: !state.isSelected }
+            this.props.handleIngredientSelection(this.props.ingredientName, !state.isSelected);
+            return { isSelected: !state.isSelected };
         });
     }
 
