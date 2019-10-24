@@ -25,9 +25,12 @@ class MenuLevel0 extends React.Component {
 
         // Create the Ingredient Components at the 0-Level
         for (const category in this.props.ingredients) {
+            // First we create the Category title.
             componentsToRender.push(
                 <div key={category} className="CategoryTitle">{category}</div>
             );
+
+            // Then we simply add all the ingredients under that Category.
             for (const subcategory in this.props.ingredients[category]) {
                 for (const ingredientName of this.props.ingredients[category][subcategory]) {
                     componentsToRender.push(

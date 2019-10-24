@@ -16,6 +16,9 @@ class MenuLevel1 extends React.Component {
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
     }
 
+    /*
+     * Handles the change in Category and shows the correct Category content.
+     */
     handleChangeCategoryTab(event, newCategory) {
         this.setState(state => {
             return { category: newCategory }
@@ -24,16 +27,18 @@ class MenuLevel1 extends React.Component {
 
     render() {
         const categoryTabLabelsToRender = [];
-        const componentsInCategoryTabToRender = [];
+        const componentsInCategoryToRender = [];
         let categoryIndex = 0;
         let ingredientIndex = 0;
 
-        // Create the Ingredient Components at the 0-Level
+        // Create the Ingredient Components at the 1-Level
         for (const category in this.props.ingredients) {
+            // First we create the Category Tab.
             categoryTabLabelsToRender.push(
                 <Tab key={categoryIndex} value={category} index={category} label={category} />
             );
 
+            // Then we get all the Ingredients under that Category.
             const ingredientsToRender = [];
             for (const subcategory in this.props.ingredients[category]) {
                 for (const ingredientName of this.props.ingredients[category][subcategory]) {
@@ -43,7 +48,9 @@ class MenuLevel1 extends React.Component {
                     ingredientIndex++;
                 }
             }
-            componentsInCategoryTabToRender.push(
+
+            // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
+            componentsInCategoryToRender.push(
                 <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
                     <Grid container spacing={1}>
                         <div className="CategoryTitle">{category}</div>
@@ -64,7 +71,7 @@ class MenuLevel1 extends React.Component {
                 <div className="AppBarOffset"></div>
                 <Grid container spacing={1}>
                     <Grid item xs={10}>
-                        {componentsInCategoryTabToRender}
+                        {componentsInCategoryToRender}
                     </Grid>
                     <Grid item xs={2}>
                         <SelectedList selectedList={this.props.selectedList} />
