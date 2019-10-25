@@ -63,7 +63,6 @@ class Logging extends React.Component {
         ingredientsSpecifiedSelected.sort();
         ingredientsSpecifiedNotSelected.sort();
         ingredientsNotSpecifiedSelected.sort();
-        console.log(this.specifiedIngredients)
 
         const formID = "e/1FAIpQLSdG-RITTtCGYcO3LowXhT-9MUYrNtDDvrCNK51fDqtbXJpytQ";
         const data = {

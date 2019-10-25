@@ -20,7 +20,7 @@ class App extends React.Component {
      * This function is passed down to any Ingredient so that it can modify the SelectedList.
      */
     handleIngredientSelection(ingredientName) {
-      const isSelected = this.state.selectedList.includes(ingredientName)
+        const isSelected = this.state.selectedList.includes(ingredientName)
         this.setState(state => {
             const selectedListCopy = state.selectedList;
 
@@ -40,7 +40,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route path="/MenuLevel0" render={(props) => <MenuLevel0 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
                     <Route path="/MenuLevel1" render={(props) => <MenuLevel1 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
