@@ -1,10 +1,12 @@
 import React from 'react';
+import queryString from 'query-string'
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Ingredient from '../Ingredient';
+import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
 
 class MenuLevel1 extends React.Component {
@@ -13,6 +15,19 @@ class MenuLevel1 extends React.Component {
         this.state = {
             category: "Vegetables"
         };
+
+        /*
+         * Extract out the query string parameters.
+         * Type in: http://localhost:3000/MenuLevel0?Arrangement=Alphabetical&Categories=Low_A&mTurkWorkerID=ABC
+         * Expected: Alphabetical, Low_A, ABC
+         */
+        const queryStringParameters = queryString.parse(this.props.location.search);
+        if (Object.entries(queryStringParameters).length !== 0) {
+            this.arrangement = queryStringParameters.Arrangement;
+            this.categories = queryStringParameters.Categories;
+            this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
+        }
+
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
     }
 
@@ -77,6 +92,7 @@ class MenuLevel1 extends React.Component {
                     </Grid>
                     <Grid item xs={2}>
                         <SelectedList selectedList={this.props.selectedList} />
+                        <Logging mTurkWorkerID={this.mTurkWorkerID} selectedList={this.props.selectedList} menuLevel={1} arrangement={this.arrangement} categories={this.categories} />
                     </Grid>
                 </Grid>
             </Box>

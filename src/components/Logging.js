@@ -13,7 +13,7 @@ class Logging extends React.Component {
         this.totalClicks = 0;
         this.idealClicks = 13; // Placeholder Number for now; this has to be manually calculated.
         this.misclicks = -1; // Placeholder Number for now.
-
+        this.specifiedIngredients = (require('../SpecifiedIngredientsTasks.json'))[this.props.categories];
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleOnClickSendLoggingData = this.handleOnClickSendLoggingData.bind(this);
     }
@@ -42,6 +42,28 @@ class Logging extends React.Component {
             return;
         }
 
+        // Get all the Ingredients that were specified and were selected.
+        const ingredientsSpecifiedSelected = this.props.selectedList.filter(selectedIngredient => {
+            return this.specifiedIngredients.includes(selectedIngredient);
+        });
+
+        // Get all the Ingredients that were specified but were not selected.
+        const ingredientsSpecifiedNotSelected = this.props.selectedList.filter(selectedIngredient => {
+            return !this.specifiedIngredients.includes(selectedIngredient);
+        });
+
+        // Get all the ingredients that were not specified and were still selected.
+        const ingredientsNotSpecifiedSelected = this.props.selectedList.filter(selectedIngredient => {
+            return !this.specifiedIngredients.includes(selectedIngredient);
+        });
+
+        // Sort all ingredient arrays.
+        this.specifiedIngredients.sort();
+        ingredientsSpecifiedSelected.sort();
+        ingredientsSpecifiedNotSelected.sort();
+        ingredientsNotSpecifiedSelected.sort();
+        console.log(this.specifiedIngredients)
+
         const formID = "e/1FAIpQLSdG-RITTtCGYcO3LowXhT-9MUYrNtDDvrCNK51fDqtbXJpytQ";
         const data = {
             "entry.312909528": this.props.mTurkWorkerID, // mTurkWorkerID
@@ -52,9 +74,14 @@ class Logging extends React.Component {
             "entry.3846495": this.totalClicks, // Total number of Clicks
             "entry.1622141363": this.misclicks, // Total number of Misclicks
             "entry.2000979147": this.idealClicks, // Ideal Clicks to complete the Task
-            "entry.535203847": -1, // Task Correctness (%); to be done!
-            "entry.1814249455": 100 * (1 - Math.abs(this.totalClicks - this.idealClicks) / this.idealClicks), // Efficiency (%)
-            "entry.585530140": (this.props.selectedList.length > 0) ? this.props.selectedList.join(', ') : "None" // Ingredients Selected and Submitted
+            "entry.1814249455": 100 * (1 - Math.abs(this.totalClicks - this.idealClicks) / this.idealClicks), // Click Efficiency (%)
+            "entry.229369407": (this.specifiedIngredients.length > 0) ? this.specifiedIngredients.join(', ') : "None", // Ingredients Specified in the Task
+            "entry.585530140": (this.props.selectedList.length > 0) ? this.props.selectedList.join(', ') : "None", // Ingredients Selected and Submitted
+            "entry.2093943323": (ingredientsSpecifiedSelected.length > 0) ? ingredientsSpecifiedSelected.join(', ') : "None", // Ingredients Specified that were selected.
+            "entry.108927114": (ingredientsSpecifiedNotSelected.length > 0) ? ingredientsSpecifiedNotSelected.join(', ') : "None",
+            "entry.1280302377": 100 * (ingredientsSpecifiedSelected.length / this.specifiedIngredients.length), // Ingredients Specified Selected (%).
+            "entry.1304306131": (ingredientsNotSpecifiedSelected.length > 0) ? ingredientsNotSpecifiedSelected.join(', ') : "None", // Ingredients Not Specified that were selected.
+            "entry.44373570": 100 * ingredientsSpecifiedSelected.length / (this.props.selectedList.length + ingredientsSpecifiedNotSelected.length), // Task Correctness (%)
         };
         const parameters = [];
         for (const key in data) {
