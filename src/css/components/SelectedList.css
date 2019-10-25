@@ -1,0 +1,14 @@
+.SelectedList {
+    border: 1px solid #AAAAAA;
+    padding: 10px;
+}
+
+.SelectedListTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.SelectedListItem:nth-child(odd) {
+    background: #EEEEEE;
+}

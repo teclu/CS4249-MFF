@@ -1,122 +1,51 @@
 import React from 'react';
-import Ingredient from './components/Ingredient.js'
-import SummaryCard from './components/SummaryCard.js'
-import Card from './components/Card.js'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import MenuLevel0 from './components/menu_levels/MenuLevel0.js';
+import MenuLevel1 from './components/menu_levels/MenuLevel1.js';
+import MenuLevel2 from './components/menu_levels/MenuLevel2.js';
 import './css/App.css';
 
 class App extends React.Component {
-    // For testing purposes. More changes to come.
-    constructor(){
-      super()
-      this.state ={
-        selectedItems:[]
-      }
-      this.dataBase ={}
-
-      this.handleChange = this.handleChange.bind(this)
-    }
-
-    componentDidMount(){
-      this.dataBase = require('./Ingredients.json');
-      let ingredients =[]
-
-
-
-      this.setState(()=>({ingredientList:ingredients}))
-
-    }
-
-    handleChange(name){
-        if(this.state.selectedItems.includes(name)){
-          this.setState(prevState => ({
-              selectedItems: prevState.selectedItems.filter((x) => x !== name)
-          }));
-        }
-        else{
-          this.setState(prevState => ({selectedItems: prevState.selectedItems.concat(name)}))
+    constructor(props) {
+        super(props);
+        this.ingredients = require('./Ingredients.json'); // Import the Ingredients JSON File.
+        this.state = {
+            selectedList: [] // This keeps track of all the selected Ingredients' Names.
         }
     }
 
+    /*
+     * This function is passed down to any Ingredient so that it can modify the SelectedList.
+     */
+    handleIngredientSelection(ingredientName, isSelected) {
+        this.setState(state => {
+            const selectedListCopy = state.selectedList;
 
-
-    render(){
-
-      const toRender = [];
-      let index = 0
-
-      if(this.props.menuLevels ===1){
-        for (const tab in this.dataBase){
-          for (const category in this.dataBase[tab]){
-            for (const subcategory in this.dataBase[tab][category]){
-              for(const ingredient of this.dataBase[tab][category][subcategory]){
-                const value = this.snakeToPascal(ingredient)
-                toRender.push(
-                    <Ingredient
-                      name={value}
-                      key={index}
-                      isSelected={this.state.selectedItems.includes(value)}
-                      handleChange={this.handleChange} />
-                )
-                index++
-          }}}}
-      }
-      else if (this.props.menuLevels ===2) {
-        for (const tab in this.dataBase){
-          for (const category in this.dataBase[tab]){
-            for (const subcategory in this.dataBase[tab][category]){
-              const cardItems = []
-              const id = index
-              let stayOpen = false
-
-              for(const ingredient of this.dataBase[tab][category][subcategory]){
-                const value = this.snakeToPascal(ingredient)
-                const isSelected = this.state.selectedItems.includes(value)
-                if(!stayOpen&&isSelected)stayOpen = true
-                cardItems.push(
-                  <Ingredient
-                    name={value}
-                    key={index}
-                    isSelected={this.state.selectedItems.includes(value)}
-                    handleChange={this.handleChange} />
-                  )
-                  index++
-                }
-                const value = this.snakeToPascal(subcategory)
-                toRender.push(
-                  <Card
-                    subcategory ={value}
-                    items ={cardItems}
-                    key ={id}
-                    isSelected={this.state.selectedItems.includes(value)}
-                    stayOpen={stayOpen}
-                    handleChange={this.handleChange}
-                  />
-                )
-                index++
-              }
+            // If an Ingredient has been Selected, push its Name onto the SelectedList and sort it alphabetically.
+            if (isSelected) {
+                selectedListCopy.push(ingredientName);
+                selectedListCopy.sort();
             }
-          }
-      }
-
-      return (
-          <div className="grid-container">
-              <div className="tabs"></div>
-              <div className="main">{toRender}</div>
-              <SummaryCard className="right-pane" ingredientList={this.state.selectedItems}/>
-          </div>
-      );
+            // Else we remove the Ingredient's Name from the SelectedList.
+            else {
+                selectedListCopy.splice(selectedListCopy.indexOf(ingredientName), 1);
+            }
+            // Finally, return the modified SelectedList.
+            return { selectedList: selectedListCopy }
+        });
     }
 
-
-    snakeToPascal(str){
-      str +='';
-      str = str.split('_');
-      for(var i=0;i<str.length;i++){
-         str[i] = str[i].slice(0,1).toUpperCase() + str[i].slice(1,str[i].length);
-      }
-      return str.join(' ');
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route path="/MenuLevel0" render={(props) => <MenuLevel0 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
+                    <Route path="/MenuLevel1" render={(props) => <MenuLevel1 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
+                    <Route path="/MenuLevel2" render={(props) => <MenuLevel2 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
+                </Switch>
+            </Router>
+        );
     }
-
 }
 
 export default App;
