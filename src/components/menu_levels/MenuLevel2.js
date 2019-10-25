@@ -40,7 +40,6 @@ class MenuLevel2 extends React.Component {
 
 
   render() {
-    console.log("poop")
       let categoryIndex = 0;
       let subcategoryIndex = 0;
       let ingredientIndex = 0;
@@ -103,7 +102,6 @@ class MenuLevel2 extends React.Component {
         categoryIndex++;
       }
 
-      console.log(this.props.selectedList)
       return (
           <Box>
               <AppBar position="fixed">

@@ -19,7 +19,6 @@ class App extends React.Component {
      */
     handleIngredientSelection(ingredientName) {
       const isSelected = this.state.selectedList.includes(ingredientName)
-        console.log(ingredientName, isSelected)
         this.setState(state => {
             const selectedListCopy = state.selectedList;
 
