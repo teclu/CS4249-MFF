@@ -76,7 +76,7 @@ class Logging extends React.Component {
             "entry.1814249455": 100 * (1 - Math.abs(this.totalClicks - this.idealClicks) / this.idealClicks), // Click Efficiency (%)
             "entry.229369407": (this.specifiedIngredients > 0) ? this.specifiedIngredients.join(', ') : "None", // Ingredients Specified in the Task
             "entry.585530140": (this.props.selectedList.length > 0) ? this.props.selectedList.join(', ') : "None", // Ingredients Selected and Submitted
-            "entry.2093943323": ingredientsSpecifiedSelected.join(', '), // Ingredients Specified that were selected.
+            "entry.2093943323": (ingredientsSpecifiedSelected.length > 0) ? ingredientsSpecifiedSelected.join(', ') : "None", // Ingredients Specified that were selected.
             "entry.108927114": (ingredientsSpecifiedNotSelected.length > 0) ? ingredientsSpecifiedNotSelected.join(', ') : "None",
             "entry.1280302377": 100 * (ingredientsSpecifiedSelected.length / this.specifiedIngredients.length), // Ingredients Specified Selected (%).
             "entry.1304306131": (ingredientsNotSpecifiedSelected.length > 0) ? ingredientsNotSpecifiedSelected.join(', ') : "None", // Ingredients Not Specified that were selected.
