@@ -1,25 +1,29 @@
 import React from 'react';
 import queryString from 'query-string'
 import Ingredient from '../Ingredient.js';
+import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box';
 
 class MenuLevel0 extends React.Component {
-    /*
-     * Sample function to extract out the query string parameters.
-     * Type in: http://localhost:3000/MenuLevel0?Arrangement=Alphabetical&Categories=Low_7_1
-     * Expected: Alphabetical, Low_7_1
-     */
-    checkQueryString() {
-        const queryStringParameters = queryString.parse(this.props.location.search)
-        console.log(queryStringParameters.Arrangement);
-        console.log(queryStringParameters.Categories);
+    constructor(props) {
+        super(props);
+
+        /*
+         * Extract out the query string parameters.
+         * Type in: http://localhost:3000/MenuLevel0?Arrangement=Alphabetical&Categories=Low_A&mTurkWorkerID=ABC
+         * Expected: Alphabetical, Low_A, ABC
+         */
+        const queryStringParameters = queryString.parse(this.props.location.search);
+        if (Object.entries(queryStringParameters).length !== 0) {
+            this.arrangement = queryStringParameters.Arrangement;
+            this.categories = queryStringParameters.Categories;
+            this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
+        }
     }
 
     render() {
-        this.checkQueryString();
-
         const componentsToRender = [];
         let ingredientIndex = 0;
 
@@ -51,6 +55,7 @@ class MenuLevel0 extends React.Component {
                     </Grid>
                     <Grid item xs={2}>
                         <SelectedList selectedList={this.props.selectedList} />
+                        <Logging mTurkWorkerID={this.mTurkWorkerID} selectedList={this.props.selectedList} menuLevel={0} arrangement={this.arrangement} categories={this.categories} />
                     </Grid>
                 </Grid>
             </Box>

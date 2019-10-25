@@ -9,3 +9,8 @@
 .AppBarOffset {
     height: 48px;
 }
+
+button.SubmitButton {
+    margin-top: 10px;
+    width: 100%;
+}
