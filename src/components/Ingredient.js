@@ -3,6 +3,9 @@ import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid'
 import '../css/components/Ingredient.css';
 
+/*
+ * This is the actual Ingredient card that is rendered.
+ */
 class Ingredient extends React.Component {
     constructor(props) {
         super(props);
