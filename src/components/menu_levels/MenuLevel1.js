@@ -53,26 +53,28 @@ class MenuLevel1 extends React.Component {
                 <Tab key={categoryIndex} value={category} index={category} label={category} />
             );
 
-            // Then we get all the Ingredients under that Category.
-            const ingredientsToRender = [];
-            for (const subcategory in this.props.ingredients[category]) {
-                for (const ingredientName of this.props.ingredients[category][subcategory]) {
-                    ingredientsToRender.push(
-                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} hidden={this.state.category !== category} />
-                    )
-                    ingredientIndex++;
-                }
-            }
+            if (category === this.state.category){
+              // Then we get all the Ingredients under that Category.
+              const ingredientsToRender = [];
+              for (const subcategory in this.props.ingredients[category]) {
+                  for (const ingredientName of this.props.ingredients[category][subcategory]) {
+                      ingredientsToRender.push(
+                          <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} isSelected={this.props.selectedList.includes(ingredientName)} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} hidden={this.state.category !== category} />
+                      )
+                      ingredientIndex++;
+                  }
+              }
 
-            // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
-            componentsInCategoryToRender.push(
-                <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                    <Grid container spacing={1}>
-                        <div className="CategoryTitle">{category}</div>
-                        {ingredientsToRender}
-                    </Grid>
-                </div>
-            );
+              // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
+              componentsInCategoryToRender.push(
+                  <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
+                      <Grid container spacing={1}>
+                          <div className="CategoryTitle">{category}</div>
+                          {ingredientsToRender}
+                      </Grid>
+                  </div>
+              );
+          }
             categoryIndex++;
         }
 
