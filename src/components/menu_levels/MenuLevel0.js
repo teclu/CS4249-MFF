@@ -38,7 +38,7 @@ class MenuLevel0 extends React.Component {
             for (const subcategory in this.props.ingredients[category]) {
                 for (const ingredientName of this.props.ingredients[category][subcategory]) {
                     componentsToRender.push(
-                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} />
+                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} isSelected={this.props.selectedList.includes(ingredientName)} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} />
                     );
                     ingredientIndex++;
                 }

@@ -17,12 +17,14 @@ class App extends React.Component {
     /*
      * This function is passed down to any Ingredient so that it can modify the SelectedList.
      */
-    handleIngredientSelection(ingredientName, isSelected) {
+    handleIngredientSelection(ingredientName) {
+      const isSelected = this.state.selectedList.includes(ingredientName)
+        console.log(ingredientName, isSelected)
         this.setState(state => {
             const selectedListCopy = state.selectedList;
 
             // If an Ingredient has been Selected, push its Name onto the SelectedList and sort it alphabetically.
-            if (isSelected) {
+            if (!isSelected) {
                 selectedListCopy.push(ingredientName);
                 selectedListCopy.sort();
             }

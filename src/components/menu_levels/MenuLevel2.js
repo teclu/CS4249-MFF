@@ -40,6 +40,7 @@ class MenuLevel2 extends React.Component {
 
 
   render() {
+    console.log("poop")
       let categoryIndex = 0;
       let subcategoryIndex = 0;
       let ingredientIndex = 0;
@@ -53,53 +54,56 @@ class MenuLevel2 extends React.Component {
               <Tab key={categoryIndex} value={category} index={category} label={category} />
           );
 
-          const subcategoryTabLabelsToRender = [];
-          const componentsInSubcategoryToRender = [];
-          // We get all the subcategories under the Category
-          for (const subcategory in this.props.ingredients[category]) {
-            subcategoryTabLabelsToRender.push(
-                <Tab key={subcategoryIndex} value={subcategory} index={subcategory} label={subcategory} />
-            )
+          if (category === this.state.category){
+            const subcategoryTabLabelsToRender = [];
+            const componentsInSubcategoryToRender = [];
+            // We get all the subcategories under the Category
+            for (const subcategory in this.props.ingredients[category]) {
+              subcategoryTabLabelsToRender.push(
+                  <Tab key={subcategoryIndex} value={subcategory} index={subcategory} label={subcategory} />
+              )
+              if(subcategory === this.state.subcategory){
+                  const ingredientsToRender = [];
+                  // Then we get all the Ingredients under that Subategory.
+                    for (const ingredientName of this.props.ingredients[category][subcategory]) {
+                        ingredientsToRender.push(
+                            <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} isSelected={this.props.selectedList.includes(ingredientName)} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} hidden={this.state.subcategory !== subcategory} />
+                        )
+                        ingredientIndex++;
+                    }
 
-            const ingredientsToRender = [];
-            // Then we get all the Ingredients under that Subategory.
-              for (const ingredientName of this.props.ingredients[category][subcategory]) {
-                  ingredientsToRender.push(
-                      <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} hidden={this.state.subcategory !== subcategory} />
-                  )
-                  ingredientIndex++;
+                    componentsInSubcategoryToRender.push(
+                        <div className="SubcategoryTab" key={subcategoryIndex} value={subcategory} index={subcategory} hidden={this.state.subcategory !== subcategory}>
+                            <Grid container spacing={1}>
+                                <div className="CategoryTitle">{subcategory}</div>
+                                {ingredientsToRender}
+                            </Grid>
+                        </div>
+                    );
               }
+                subcategoryIndex++;
+            }
 
-              componentsInSubcategoryToRender.push(
-                  <div className="SubcategoryTab" key={subcategoryIndex} value={subcategory} index={subcategory} hidden={this.state.subcategory !== subcategory}>
-                      <Grid container spacing={1}>
-                          <div className="CategoryTitle">{subcategory}</div>
-                          {ingredientsToRender}
-                      </Grid>
-                  </div>
-              );
-
-              subcategoryIndex++;
-          }
-
-          // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
-            componentsInCategoryToRender.push(
-              <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                  <Grid container spacing={1}>
-                      <Grid item xs ={3}>
-                          <Tabs orientation="vertical" value={this.state.subcategory} onChange={this.handleChangeSubcategoryTab}>
-                              {subcategoryTabLabelsToRender}
-                          </Tabs>
-                      </Grid>
-                      <Grid item xs ={9}>
-                          {componentsInSubcategoryToRender}
-                      </Grid>
-                  </Grid>
-              </div>
-          );
-          categoryIndex++;
+            // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
+              componentsInCategoryToRender.push(
+                <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
+                    <Grid container spacing={1}>
+                        <Grid item xs ={3}>
+                            <Tabs orientation="vertical" value={this.state.subcategory} onChange={this.handleChangeSubcategoryTab}>
+                                {subcategoryTabLabelsToRender}
+                            </Tabs>
+                        </Grid>
+                        <Grid item xs ={9}>
+                            {componentsInSubcategoryToRender}
+                        </Grid>
+                    </Grid>
+                </div>
+            );
+        }
+        categoryIndex++;
       }
 
+      console.log(this.props.selectedList)
       return (
           <Box>
               <AppBar position="fixed">

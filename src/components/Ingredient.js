@@ -9,9 +9,6 @@ import '../css/components/Ingredient.css';
 class Ingredient extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isSelected: false
-        };
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -19,17 +16,16 @@ class Ingredient extends React.Component {
      * Handles the change in Checked and adds/removes the Ingredient from the Selected List.
      */
     handleChange(event) {
-        this.setState(state => {
-            this.props.handleIngredientSelection(this.props.ingredientName, !state.isSelected);
-            return { isSelected: !state.isSelected };
-        });
+      event.preventDefault()
+      this.props.handleIngredientSelection(this.props.ingredientName);
     }
 
     render() {
         return (
-            <Grid item xs={2}>
+            <Grid item xs={2} >
                 <Card className="Ingredient" onClick={this.handleChange}>
-                    <input type="checkbox" id={this.props.id} checked={this.state.isSelected} onChange={this.handleChange} />
+                    <input type="checkbox" id={this.props.id} checked={this.props.isSelected}
+                    onChange={e=>{}}/>
                     <label htmlFor={this.props.id}>
                         <span className="IngredientCheckbox">✔</span> <span className="IngredientName">{this.props.ingredientName}</span>
                     </label>
