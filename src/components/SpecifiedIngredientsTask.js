@@ -13,6 +13,10 @@ class SpecifiedIngredientsTasks extends React.Component {
         const specifiedIngredients = (require('../SpecifiedIngredientsTasks.json'))[queryStringParameters.Categories];
         let instructionToRender = "Select the following ingredients: ";
 
+        // Randomise the Ingredients' order.
+        specifiedIngredients.sort(() => Math.random() - 0.5);
+
+        // Append the Ingredients to the instruction string.
         for (const specifiedIngredient of specifiedIngredients) {
             instructionToRender = instructionToRender.concat(specifiedIngredient);
             if (specifiedIngredients.indexOf(specifiedIngredient) !== specifiedIngredients.length - 1) {
