@@ -18,10 +18,6 @@ class MenuLevel2 extends React.Component {
       this.handleChangeSubcategoryTab = this.handleChangeSubcategoryTab.bind(this);
   }
 
-  componenetDidMount() {
-
-  }
-
   /*
    * Handles the change in Category and shows the correct Category content.
    */
@@ -87,22 +83,20 @@ class MenuLevel2 extends React.Component {
           }
 
           // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
-          if(this.state.category === category){
             componentsInCategoryToRender.push(
-                <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                    <Grid container spacing={1}>
-                        <Grid item xs ={3}>
-                            <Tabs orientation="vertical" value={this.state.subcategory} onChange={this.handleChangeSubcategoryTab}>
-                                {subcategoryTabLabelsToRender}
-                            </Tabs>
-                        </Grid>
-                        <Grid item xs ={9}>
-                            {componentsInSubcategoryToRender}
-                        </Grid>
-                    </Grid>
-                </div>
-            );
-          }
+              <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
+                  <Grid container spacing={1}>
+                      <Grid item xs ={3}>
+                          <Tabs orientation="vertical" value={this.state.subcategory} onChange={this.handleChangeSubcategoryTab}>
+                              {subcategoryTabLabelsToRender}
+                          </Tabs>
+                      </Grid>
+                      <Grid item xs ={9}>
+                          {componentsInSubcategoryToRender}
+                      </Grid>
+                  </Grid>
+              </div>
+          );
           categoryIndex++;
       }
 
