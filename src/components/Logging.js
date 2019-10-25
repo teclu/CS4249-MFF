@@ -57,6 +57,12 @@ class Logging extends React.Component {
             return !this.specifiedIngredients.includes(selectedIngredient);
         });
 
+        // Sort all ingredient arrays.
+        this.specifiedIngredients.sort();
+        ingredientsSpecifiedSelected.sort();
+        ingredientsSpecifiedNotSelected.sort();
+        ingredientsNotSpecifiedSelected.sort();
+
         const formID = "e/1FAIpQLSdG-RITTtCGYcO3LowXhT-9MUYrNtDDvrCNK51fDqtbXJpytQ";
         const data = {
             "entry.312909528": this.props.mTurkWorkerID, // mTurkWorkerID
@@ -68,7 +74,7 @@ class Logging extends React.Component {
             "entry.1622141363": this.misclicks, // Total number of Misclicks
             "entry.2000979147": this.idealClicks, // Ideal Clicks to complete the Task
             "entry.1814249455": 100 * (1 - Math.abs(this.totalClicks - this.idealClicks) / this.idealClicks), // Click Efficiency (%)
-            "entry.229369407": this.specifiedIngredients.join(', '), // Ingredients Specified in the Task
+            "entry.229369407": (this.specifiedIngredients > 0) ? this.specifiedIngredients.join(', ') : "None", // Ingredients Specified in the Task
             "entry.585530140": (this.props.selectedList.length > 0) ? this.props.selectedList.join(', ') : "None", // Ingredients Selected and Submitted
             "entry.2093943323": ingredientsSpecifiedSelected.join(', '), // Ingredients Specified that were selected.
             "entry.108927114": (ingredientsSpecifiedNotSelected.length > 0) ? ingredientsSpecifiedNotSelected.join(', ') : "None",
