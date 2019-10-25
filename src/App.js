@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import MenuLevel0 from './components/menu_levels/MenuLevel0.js';
 import MenuLevel1 from './components/menu_levels/MenuLevel1.js';
 import MenuLevel2 from './components/menu_levels/MenuLevel2.js';
-import SpecifiedIngredientsTasks from './components/SpecifiedIngredientsTask.js';
+import SpecifiedIngredientsTask from './components/SpecifiedIngredientsTask.js';
 import './css/App.css';
+import Ingredients from './Ingredients.js';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.ingredients = require('./Ingredients.json'); // Import the Ingredients JSON File.
+        this.ingredients = Ingredients; // Import the Ingredients JSON File.
         this.state = {
             selectedList: [] // This keeps track of all the selected Ingredients' Names.
         }
@@ -44,7 +45,7 @@ class App extends React.Component {
                     <Route path="/MenuLevel0" render={(props) => <MenuLevel0 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
                     <Route path="/MenuLevel1" render={(props) => <MenuLevel1 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
                     <Route path="/MenuLevel2" render={(props) => <MenuLevel2 {...props} ingredients={this.ingredients} selectedList={this.state.selectedList} handleIngredientSelection={this.handleIngredientSelection.bind(this)} />} />
-                    <Route path="/InstructionTask" render={(props => <SpecifiedIngredientsTasks {...props} />)} />
+                    <Route path="/InstructionTask" render={(props => <SpecifiedIngredientsTask {...props} />)} />
                 </Switch>
             </Router>
         );

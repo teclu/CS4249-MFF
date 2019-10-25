@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import SpecifiedIngredientsTasks from '../SpecifiedIngredientsTasks.js'
 
 /*
  * This records the background DVs we want to measure and also acts as a sender to the Google Forms.
@@ -13,7 +14,7 @@ class Logging extends React.Component {
         this.totalClicks = 0;
         this.idealClicks = 13; // Placeholder Number for now; this has to be manually calculated.
         this.misclicks = -1; // Placeholder Number for now.
-        this.specifiedIngredients = (require('../SpecifiedIngredientsTasks.json'))[this.props.categories];
+        this.specifiedIngredients = SpecifiedIngredientsTasks[this.props.categories];
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleOnClickSendLoggingData = this.handleOnClickSendLoggingData.bind(this);
     }

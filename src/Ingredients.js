@@ -1,4 +1,4 @@
-{
+const Ingredients = JSON.parse(JSON.stringify({
     "Vegetables": {
         "Allium/Bulbs": [
             "Garlic",
@@ -213,4 +213,6 @@
             "Instant Coffee"
         ]
     }
-}
+}));
+
+export default Ingredients;
