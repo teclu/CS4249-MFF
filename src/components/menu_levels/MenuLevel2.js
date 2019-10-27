@@ -79,6 +79,7 @@ class MenuLevel2 extends React.Component {
               )
               if(subcategory === this.state.subcategory){
                   const ingredientsToRender = [];
+                  this.props.ingredients[category][subcategory].sort();
                   // Then we get all the Ingredients under that Subategory.
                     for (const ingredientName of this.props.ingredients[category][subcategory]) {
                         ingredientsToRender.push(

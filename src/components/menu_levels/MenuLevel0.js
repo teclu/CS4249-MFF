@@ -35,13 +35,21 @@ class MenuLevel0 extends React.Component {
             );
 
             // Then we simply add all the ingredients under that Category.
+            const ingredientsPerCategory = [];
             for (const subcategory in this.props.ingredients[category]) {
                 for (const ingredientName of this.props.ingredients[category][subcategory]) {
-                    componentsToRender.push(
-                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} />
-                    );
-                    ingredientIndex++;
+                    ingredientsPerCategory.push(ingredientName);
                 }
+            }
+            // Sort them
+            ingredientsPerCategory.sort();
+
+            // Then add to the list of ingredient components
+            for (const ingredientName of ingredientsPerCategory) {
+                componentsToRender.push(
+                    <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} />
+                );
+                ingredientIndex++;
             }
         }
 

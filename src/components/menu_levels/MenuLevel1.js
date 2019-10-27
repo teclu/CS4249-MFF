@@ -53,28 +53,38 @@ class MenuLevel1 extends React.Component {
                 <Tab key={categoryIndex} value={category} index={category} label={category} />
             );
 
+            // Only (re)render components of the currently selected category
             if (category === this.state.category){
-              // Then we get all the Ingredients under that Category.
-              const ingredientsToRender = [];
-              for (const subcategory in this.props.ingredients[category]) {
-                  for (const ingredientName of this.props.ingredients[category][subcategory]) {
-                      ingredientsToRender.push(
-                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} hidden={this.state.category !== category} />
-                      )
-                      ingredientIndex++;
-                  }
-              }
+                // Then we get all the Ingredients under that Category.
+                let ingredientsPerCategory = [];
+                const ingredientsToRender = [];
 
-              // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
-              componentsInCategoryToRender.push(
-                  <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                      <Grid container spacing={1}>
-                          <div className="CategoryTitle">{category}</div>
-                          {ingredientsToRender}
-                      </Grid>
-                  </div>
-              );
-          }
+                for (const subcategory in this.props.ingredients[category]) {
+                    for (const ingredientName of this.props.ingredients[category][subcategory]) {
+                        ingredientsPerCategory.push(ingredientName);
+                    }
+                }
+                // Sort them
+                ingredientsPerCategory.sort();
+            
+                // Then add to the list of ingredient components
+                for (const ingredientName of ingredientsPerCategory) {
+                    ingredientsToRender.push(
+                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} />
+                    );
+                    ingredientIndex++;
+                }
+
+                // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
+                componentsInCategoryToRender.push(
+                    <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
+                        <Grid container spacing={1}>
+                            <div className="CategoryTitle">{category}</div>
+                            {ingredientsToRender}
+                        </Grid>
+                    </div>
+                );
+            }
             categoryIndex++;
         }
 
