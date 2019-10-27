@@ -18,8 +18,6 @@ class MenuLevel0 extends React.Component {
     }
 
     render() {
-        this.checkQueryString();
-
         const componentsToRender = [];
         let ingredientIndex = 0;
 

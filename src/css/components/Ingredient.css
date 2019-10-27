@@ -22,7 +22,6 @@ input[type="checkbox"] + label span.IngredientCheckbox {
     display: table-cell;
     background: #FFFFFF;
     color: #FFFFFF;
-    transition: all 0.175s;
     text-align: center;
     vertical-align: middle;
     border: 1px solid #CCCCCC;
