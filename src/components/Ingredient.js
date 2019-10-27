@@ -7,13 +7,16 @@ import {
 } from '../actions';
 import '../css/components/Ingredient.css';
 
+/*
+ * This is the actual Ingredient card that is rendered.
+ */
 class Ingredient extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isSelected: false
-        };
         this.handleChange = this.handleChange.bind(this);
+        this.state = {
+            isSelected: this.props.store.getState().includes(this.props.ingredientName)
+        }
     }
 
     /*

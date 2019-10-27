@@ -9,7 +9,6 @@ import '../css/components/SelectedList.css';
  */
 class SelectedList extends React.Component {
     render() {
-        console.log(this.props.store.getState())
         const ingredientNames = this.props.selectedList;
         const ingredientNamesToRender = [];
 
