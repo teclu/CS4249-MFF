@@ -32,7 +32,7 @@ class MenuLevel0 extends React.Component {
             for (const subcategory in this.props.ingredients[category]) {
                 for (const ingredientName of this.props.ingredients[category][subcategory]) {
                     componentsToRender.push(
-                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} handleIngredientSelection={this.props.handleIngredientSelection.bind(this)} />
+                        <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} />
                     );
                     ingredientIndex++;
                 }
@@ -48,7 +48,7 @@ class MenuLevel0 extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid item xs={2}>
-                        <SelectedList selectedList={this.props.selectedList} />
+                        <SelectedList store={this.props.store} />
                     </Grid>
                 </Grid>
             </Box>

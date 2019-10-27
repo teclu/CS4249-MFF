@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import ListItem from '@material-ui/core/ListItem';
 import '../css/components/SelectedList.css';
@@ -8,6 +9,7 @@ import '../css/components/SelectedList.css';
  */
 class SelectedList extends React.Component {
     render() {
+        console.log(this.props.store.getState())
         const ingredientNames = this.props.selectedList;
         const ingredientNamesToRender = [];
 
@@ -33,4 +35,8 @@ class SelectedList extends React.Component {
     }
 }
 
-export default SelectedList;
+const mapStateToProps = (state) => ({
+    selectedList: state
+})
+
+export default connect(mapStateToProps)(SelectedList);
