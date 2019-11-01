@@ -1,0 +1,15 @@
+body {
+    background: #ffffff !important;
+}
+
+.InstructionToRender {
+    color: #757575;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif, Arial;
+}
+
+.SpecifiedIngredient {
+    line-height: 40px;
+    text-indent: 40px;
+    font-weight: bold;
+}
