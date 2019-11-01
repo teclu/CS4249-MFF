@@ -55,6 +55,13 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Tomato Juice",
         "Apple Juice"
     ],
+	"Low_I": [
+		"Whipped Cream",
+		"Evaporated Milk",
+		"Ricotta Cheese",
+		"Blue Cheese",
+		"Sour Cream"
+	],
     "High_A": [
         "Pork Chops",
         "Raspberries",
@@ -110,7 +117,14 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Chicken Breast",
         "Cow Milk",
         "Fruit Punch"
-    ]
+    ],
+	"High_I": [
+		"Bok Choy",
+		"Pineapple",
+		"Feta Cheese",
+		"Ground Pork",
+		"Instant Coffee"
+	]
 }));
 
 export default SpecifiedIngredientsTasks;
