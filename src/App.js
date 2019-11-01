@@ -18,6 +18,11 @@ class App extends React.Component {
     }
 
     render() {
+      window.addEventListener("keydown",function (e) {
+          if (e.keyCode === 116 || e.keyCode === 114 || (e.ctrlKey && (e.keyCode === 70|| e.keycode===82))) {
+              e.preventDefault();
+          }
+      })
         return (
             <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
