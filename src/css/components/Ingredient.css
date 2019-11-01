@@ -1,45 +1,6 @@
 .Ingredient {
-    cursor: pointer;
-    border: 1px solid #AAAAAA;
-    background: #FFFFFF;
-    padding: 10px;
-}
-
-.IngredientName {
-    cursor: pointer;
-    display: table-cell;
-    vertical-align: middle;
-    border: 0px;
-    padding-left: 10px;
-}
-
-input[type="checkbox"] {
-    display: none;
-}
-
-input[type="checkbox"] + label span.IngredientCheckbox {
-    cursor: pointer;
-    display: table-cell;
-    background: #FFFFFF;
-    color: #FFFFFF;
     text-align: center;
-    vertical-align: middle;
-    border: 1px solid #CCCCCC;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-}
-
-input[type="checkbox"]:checked + label span.IngredientName {
-    font-weight: bold;
-}
-
-input[type="checkbox"]:checked + label span.IngredientCheckbox {
-    background: #399239;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #255825;
+    cursor: pointer;
+    background: #FFFFFF;
+    height: 25px;
 }

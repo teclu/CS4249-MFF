@@ -3,8 +3,8 @@ import queryString from 'query-string'
 import Ingredient from '../Ingredient.js';
 import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box';
+import { Grid, Box, Modal, Button } from '@material-ui/core';
+import '../../css/components/Modal.css';
 
 class MenuLevel0 extends React.Component {
     constructor(props) {
@@ -21,6 +21,23 @@ class MenuLevel0 extends React.Component {
             this.categories = queryStringParameters.Categories;
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
         }
+
+        this.state = {
+            InstructionModalOpen: true,
+            SubmitModalOpen: false,
+        }
+    }
+
+    handleStartButtonClick() {
+        this.setState({
+            InstructionModalOpen: false,
+        });
+    }
+
+    handleSubmitButtonClick() {
+        this.setState({
+            SubmitModalOpen: true,
+        })
     }
 
     render() {
@@ -55,15 +72,29 @@ class MenuLevel0 extends React.Component {
 
         return (
             <Box>
-                <Grid container spacing={1}>
-                    <Grid item xs={10}>
-                        <Grid container spacing={1}>
+                <Modal open={this.state.InstructionModalOpen}>
+                    <div className="OverlayModal">
+                        <p>When you click <b>Start</b>, the interface for the task will be revealed.</p>
+                        <div style={{marginBottom: "32px"}}>Click <b>Start</b> when you are ready!</div>
+                        <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
+                    </div>
+                </Modal>
+                <Modal open={this.state.SubmitModalOpen}>
+                    <div className="OverlayModal">
+                        <p>You have completed this task! Continue with the survey.</p>
+                    </div>
+                </Modal>
+                <Grid container spacing={2}>
+                    <Grid item xs={9}>
+                        <Grid container spacing={2}>
                             {componentsToRender}
                         </Grid>
                     </Grid>
-                    <Grid item xs={2}>
-                        <SelectedList store={this.props.store} />
-                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={0} arrangement={this.arrangement} categories={this.categories} />
+                    <Grid item xs={3}>
+                        <div style={{position: "fixed", width: "22.5%"}}>
+                            <SelectedList store={this.props.store} />
+                            <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={0} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
+                        </div>
                     </Grid>
                 </Grid>
             </Box>

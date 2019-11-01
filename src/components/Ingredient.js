@@ -6,6 +6,7 @@ import {
     removeFromSelected,
 } from '../actions';
 import '../css/components/Ingredient.css';
+import { CardContent, Checkbox } from '@material-ui/core';
 
 /*
  * This is the actual Ingredient card that is rendered.
@@ -35,13 +36,15 @@ class Ingredient extends React.Component {
 
     render() {
         return (
-            <Grid item xs={2}>
-                <Card className="Ingredient">
-                    <input type="checkbox" id={this.props.id} checked={this.state.isSelected} onChange={this.handleChange} />
-                    <label htmlFor={this.props.id}>
-                        <span className="IngredientCheckbox">✔</span> <span className="IngredientName">{this.props.ingredientName}</span>
-                    </label>
-                </Card>
+            <Grid item xs={this.props.isMenuLevel2 ? 4 : 3}>
+                {this.state.isSelected ? 
+                    <Card id={this.props.id} onClick={this.handleChange}>
+                        <CardContent style={{ background: "#ec407a", color: "white" }} className="Ingredient">{this.props.ingredientName}</CardContent>
+                    </Card> :
+                    <Card id={this.props.id} onClick={this.handleChange}>
+                        <CardContent className="Ingredient">{this.props.ingredientName}</CardContent>
+                    </Card>
+                }
             </Grid>
         );
     }

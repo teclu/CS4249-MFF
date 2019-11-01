@@ -1,19 +1,18 @@
 import React from 'react';
 import queryString from 'query-string'
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import { AppBar, Box, Grid, Tab, Tabs, Modal, Button } from '@material-ui/core';
 import Ingredient from '../Ingredient';
 import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
+import '../../css/components/Modal.css';
 
 class MenuLevel1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: "Vegetables"
+            category: "Vegetables",
+            InstructionModalOpen: true,
+            SubmitModalOpen: false,
         };
 
         /*
@@ -29,6 +28,18 @@ class MenuLevel1 extends React.Component {
         }
 
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
+    }
+
+    handleStartButtonClick() {
+        this.setState({
+            InstructionModalOpen: false,
+        });
+    }
+
+    handleSubmitButtonClick() {
+        this.setState({
+            SubmitModalOpen: true,
+        })
     }
 
     /*
@@ -78,8 +89,7 @@ class MenuLevel1 extends React.Component {
                 // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
                 componentsInCategoryToRender.push(
                     <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                        <Grid container spacing={1}>
-                            <div className="CategoryTitle">{category}</div>
+                        <Grid container spacing={2}>
                             {ingredientsToRender}
                         </Grid>
                     </div>
@@ -90,19 +100,31 @@ class MenuLevel1 extends React.Component {
 
         return (
             <Box>
+                <Modal open={this.state.InstructionModalOpen}>
+                    <div className="OverlayModal">
+                        <p>When you click <b>Start</b>, the interface for the task will be revealed.</p>
+                        <div style={{marginBottom: "32px"}}>Click <b>Start</b> when you are ready!</div>
+                        <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
+                    </div>
+                </Modal>
+                <Modal open={this.state.SubmitModalOpen}>
+                    <div className="OverlayModal">
+                        <p>You have completed this task! Continue with the survey.</p>
+                    </div>
+                </Modal>
                 <AppBar position="fixed">
                     <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
                         {categoryTabLabelsToRender}
                     </Tabs>
                 </AppBar>
                 <div className="AppBarOffset"></div>
-                <Grid container spacing={1}>
-                    <Grid item xs={10}>
+                <Grid container spacing={2}>
+                    <Grid item xs={9}>
                         {componentsInCategoryToRender}
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={3}>
                         <SelectedList store={this.props.store} />
-                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={1} arrangement={this.arrangement} categories={this.categories} />
+                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={1} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
                     </Grid>
                 </Grid>
             </Box>

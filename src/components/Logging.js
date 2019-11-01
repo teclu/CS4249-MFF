@@ -17,6 +17,9 @@ class Logging extends React.Component {
         this.specifiedIngredients = SpecifiedIngredientsTasks[this.props.categories];
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleOnClickSendLoggingData = this.handleOnClickSendLoggingData.bind(this);
+        this.state = {
+            submitted: false,
+        };
     }
 
     componentDidMount() {
@@ -38,6 +41,9 @@ class Logging extends React.Component {
      * Sends the logged data to the Google Form.
      */
     handleOnClickSendLoggingData(event) {
+        this.setState({ submitted: true });
+        this.props.handleSubmitButtonClick();
+
         // Retrieve current selected list from store
         let selectedList = this.props.store.getState();
 
@@ -97,7 +103,7 @@ class Logging extends React.Component {
 
     render() {
         return (
-            <Button variant="contained" color="primary" className="SubmitButton" onClick={this.handleOnClickSendLoggingData}>
+            <Button variant="contained" color="primary" disabled={this.state.submitted} className="SubmitButton" onClick={this.handleOnClickSendLoggingData}>
                 Submit
             </Button>
         );

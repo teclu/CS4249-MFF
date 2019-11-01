@@ -1,20 +1,19 @@
 import React from 'react';
 import queryString from 'query-string'
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid'
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import { AppBar, Box, Grid, Tab, Tabs, Modal, Button } from '@material-ui/core';
 import Ingredient from '../Ingredient.js';
 import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
+import '../../css/components/Modal.css';
 
 class MenuLevel2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             category: "Vegetables",
-            subcategory: false
+            subcategory: false,
+            InstructionModalOpen: true,
+            SubmitModalOpen: false,
         };
 
         /*
@@ -31,6 +30,18 @@ class MenuLevel2 extends React.Component {
 
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
         this.handleChangeSubcategoryTab = this.handleChangeSubcategoryTab.bind(this);
+    }
+
+    handleStartButtonClick() {
+        this.setState({
+            InstructionModalOpen: false,
+        });
+    }
+
+    handleSubmitButtonClick() {
+        this.setState({
+            SubmitModalOpen: true,
+        })
     }
 
     /*
@@ -83,7 +94,7 @@ class MenuLevel2 extends React.Component {
                   // Then we get all the Ingredients under that Subategory.
                     for (const ingredientName of this.props.ingredients[category][subcategory]) {
                         ingredientsToRender.push(
-                            <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} hidden={this.state.subcategory !== subcategory} />
+                            <Ingredient key={ingredientIndex} ingredientName={ingredientName} id={ingredientIndex} store={this.props.store} hidden={this.state.subcategory !== subcategory} isMenuLevel2={true} />
                         )
                         ingredientIndex++;
                     }
@@ -91,7 +102,6 @@ class MenuLevel2 extends React.Component {
                     componentsInSubcategoryToRender.push(
                         <div className="SubcategoryTab" key={subcategoryIndex} value={subcategory} index={subcategory} hidden={this.state.subcategory !== subcategory}>
                             <Grid container spacing={1}>
-                                <div className="CategoryTitle">{subcategory}</div>
                                 {ingredientsToRender}
                             </Grid>
                         </div>
@@ -104,12 +114,12 @@ class MenuLevel2 extends React.Component {
               componentsInCategoryToRender.push(
                 <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
                     <Grid container spacing={1}>
-                        <Grid item xs ={3}>
+                        <Grid item xs ={4}>
                             <Tabs orientation="vertical" value={this.state.subcategory} onChange={this.handleChangeSubcategoryTab}>
                                 {subcategoryTabLabelsToRender}
                             </Tabs>
                         </Grid>
-                        <Grid item xs ={9}>
+                        <Grid item xs ={8}>
                             {componentsInSubcategoryToRender}
                         </Grid>
                     </Grid>
@@ -121,6 +131,18 @@ class MenuLevel2 extends React.Component {
 
         return (
             <Box>
+                 <Modal open={this.state.InstructionModalOpen}>
+                    <div className="OverlayModal">
+                        <p>When you click <b>Start</b>, the interface for the task will be revealed.</p>
+                        <div style={{marginBottom: "32px"}}>Click <b>Start</b> when you are ready!</div>
+                        <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
+                    </div>
+                </Modal>
+                <Modal open={this.state.SubmitModalOpen}>
+                    <div className="OverlayModal">
+                        <p>You have completed this task! Continue with the survey.</p>
+                    </div>
+                </Modal>
                 <AppBar position="fixed">
                     <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
                         {categoryTabLabelsToRender}
@@ -128,12 +150,12 @@ class MenuLevel2 extends React.Component {
                 </AppBar>
                 <div className="AppBarOffset"></div>
                 <Grid container spacing={1}>
-                    <Grid item xs={10}>
+                    <Grid item xs={9}>
                         {componentsInCategoryToRender}
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={3}>
                         <SelectedList store={this.props.store} />
-                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={2} arrangement={this.arrangement} categories={this.categories} />
+                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={2} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
                     </Grid>
                 </Grid>
             </Box>

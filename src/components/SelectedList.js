@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Card from '@material-ui/core/Card';
-import ListItem from '@material-ui/core/ListItem';
 import '../css/components/SelectedList.css';
+import { CardContent, Card, ListItem } from '@material-ui/core';
 
 /*
  * This is where the Names of Selected Ingredients are shown.
@@ -15,20 +14,17 @@ class SelectedList extends React.Component {
         if (ingredientNames.length > 0) {
             for (const [index, ingredientName] of ingredientNames.entries()) {
                 ingredientNamesToRender.push(
-                    <ListItem key={index} className="SelectedListItem">&bull; {ingredientName}</ListItem>
+                    <ListItem key={index} className="SelectedListItem">{ingredientName}</ListItem>
                 );
             }
-        }
-        else {
-            ingredientNamesToRender.push(
-                <ListItem key={0} className="SelectedListItem">None Selected.</ListItem>
-            );
         }
 
         return (
             <Card className="SelectedList">
-                <div className="SelectedListTitle">Selected ({ingredientNames.length}):</div>
-                {ingredientNamesToRender}
+                <CardContent>
+                    <div className="SelectedListTitle">{ingredientNames.length} Selected</div>
+                    {ingredientNamesToRender}
+                </CardContent>
             </Card>
         );
     }
