@@ -7,9 +7,9 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Spinach"
     ],
     "Low_B": [
-        "Garlic",
+        "Oyster Mushroom",
         "Carrot",
-        "Portabello",
+        "Chickpea Beans",
         "Cauliflower",
         "Jalapenos Peppers"
     ],
@@ -21,11 +21,11 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Banana"
     ],
     "Low_D": [
-        "Honeydew Melon",
-        "Pineapple",
-        "Cherries",
-        "Grapefruit",
-        "Tomatoes"
+        "White Rice",
+        "Pita Bread",
+        "Ramen Noodles",
+        "Angel Hair Pasta",
+        "English Muffins"
     ],
     "Low_E": [
         "Buttermilk",
@@ -56,11 +56,11 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Apple Juice"
     ],
 	"Low_I": [
-		"Whipped Cream",
-		"Evaporated Milk",
-		"Ricotta Cheese",
-		"Blue Cheese",
-		"Sour Cream"
+		"Crab",
+		"Scallops",
+		"Haddock",
+		"Lobster",
+		"Squid"
 	],
     "High_A": [
         "Pork Chops",
@@ -70,7 +70,7 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Diet Cola"
     ],
     "High_B": [
-        "Rum",
+        "Salmon",
         "Sweet Potatoes",
         "Sliced Chicken",
         "Mango",
@@ -95,7 +95,7 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
         "Vodka",
         "Limes",
         "Turkey Legs",
-        "Scallions"
+        "Bagels"
     ],
     "High_F": [
         "Instant Coffee",
@@ -106,7 +106,7 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
     ],
     "High_G": [
         "Bacon",
-        "Portabello",
+        "Brown Rice",
         "Grapes",
         "Lemon/Lime Soda",
         "Colby Cheese"
@@ -123,7 +123,7 @@ const SpecifiedIngredientsTasks = JSON.parse(JSON.stringify({
 		"Pineapple",
 		"Feta Cheese",
 		"Ground Pork",
-		"Instant Coffee"
+		"Crayfish"
 	]
 }));
 
