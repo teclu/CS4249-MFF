@@ -11,10 +11,34 @@ class Logging extends React.Component {
 
         // Initialise data we are going to log.
         this.startTime = new Date();
-        this.totalClicks = 0;
-        this.idealClicks = 13; // Placeholder Number for now; this has to be manually calculated.
+        this.totalClicks = 0 - 1; // 1 extra Click for the Submit button.
+        if (this.props.menuLevel === 0) {
+            this.idealClicks = 5;
+        }
+        else if (this.props.menuLevel === 1) {
+            if (this.props.category_set.includes("Low")) {
+                this.idealClicks = 6;
+                // If they are on the first page, then there's no need to click on the tabs.
+                if ((this.props.arrangement === "Alphabetical" && (this.props.category_set.includes("_F") || this.props.category_set.includes("_H"))) ||
+                    (this.props.arrangement === "Common" && (this.props.category_set.includes("_A") || this.props.category_set.includes("_B")))) {
+                    this.idealClicks -= 1;
+                }
+            }
+            else if (this.props.category_set.includes("High")) {
+                this.idealClicks = 10;
+                // If they are on the first page, then there's no need to click on the tabs.
+                if ((this.props.arrangement === "Alphabetical" && (!this.props.category_set.includes("_B") && !this.props.category_set.includes("_I"))) ||
+                    (this.props.arrangement === "Common" && (!this.props.category_set.includes("_E") && !this.props.category_set.includes("_G") && !this.props.category_set.includes("_H") && !this.props.category_set.includes("_I")))) {
+                    this.idealClicks -= 1;
+                }
+            }
+        }
+        else if (this.props.menuLevel === 2) {
+            this.idealClicks = 3 * 5; // 3 Clicks per Ingredient to find.
+        }
+
         this.misclicks = -1; // Placeholder Number for now.
-        this.specifiedIngredients = SpecifiedIngredientsTasks[this.props.categories];
+        this.specifiedIngredients = SpecifiedIngredientsTasks[this.props.category_set];
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleOnClickSendLoggingData = this.handleOnClickSendLoggingData.bind(this);
         this.state = {
@@ -78,7 +102,7 @@ class Logging extends React.Component {
             "entry.312909528": this.props.mTurkWorkerID, // mTurkWorkerID
             "entry.203482683": this.props.menuLevel, // Menu Level = { 0, 1, 2 }
             "entry.1431340849": this.props.arrangement, // Arrangement = { Alphabetical, Common_First }
-            "entry.975941733": this.props.categories, // Categories = { Low_X, High_X }
+            "entry.975941733": this.props.category_set, // category_set = { Low_X, High_X }
             "entry.1597354442": (new Date() - this.startTime) / 1000, // Time Taken (s)
             "entry.3846495": this.totalClicks, // Total number of Clicks
             "entry.1622141363": this.misclicks, // Total number of Misclicks

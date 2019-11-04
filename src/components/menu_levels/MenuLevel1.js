@@ -23,7 +23,7 @@ class MenuLevel1 extends React.Component {
         const queryStringParameters = queryString.parse(this.props.location.search);
         if (Object.entries(queryStringParameters).length !== 0) {
             this.arrangement = queryStringParameters.Arrangement;
-            this.categories = queryStringParameters.Categories;
+            this.category_set = queryStringParameters.Categories;
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
         }
 
@@ -76,7 +76,7 @@ class MenuLevel1 extends React.Component {
             );
 
             // Only (re)render components of the currently selected category
-            if (category === this.state.category){
+            if (category === this.state.category) {
                 // Then we get all the Ingredients under that Category.
                 let ingredientsPerCategory = [];
                 const ingredientsToRender = [];
@@ -88,7 +88,7 @@ class MenuLevel1 extends React.Component {
                 }
                 // Sort them
                 ingredientsPerCategory.sort();
-            
+
                 // Then add to the list of ingredient components
                 for (const ingredientName of ingredientsPerCategory) {
                     ingredientsToRender.push(
@@ -114,7 +114,7 @@ class MenuLevel1 extends React.Component {
                 <Modal open={this.state.InstructionModalOpen}>
                     <div className="OverlayModal">
                         <p>When you click <b>Start</b>, the interface for the task will be revealed.</p>
-                        <div style={{marginBottom: "32px"}}>Click <b>Start</b> when you are ready!</div>
+                        <div style={{ marginBottom: "32px" }}>Click <b>Start</b> when you are ready!</div>
                         <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
                     </div>
                 </Modal>
@@ -135,7 +135,7 @@ class MenuLevel1 extends React.Component {
                     </Grid>
                     <Grid item xs={3}>
                         <SelectedList store={this.props.store} />
-                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={1} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
+                        {!this.state.InstructionModalOpen ? <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={1} arrangement={this.arrangement} category_set={this.category_set} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} /> : null}
                     </Grid>
                 </Grid>
             </Box>

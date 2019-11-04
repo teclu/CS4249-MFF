@@ -194,7 +194,7 @@ const Ingredients = JSON.parse(JSON.stringify({
             "Squid"
         ]
     },
-    "Carbohydrates/Staples": {
+    "Carbohydrates": {
         "Grain/Rice": [
             "Barley",
             "Black Rice",
