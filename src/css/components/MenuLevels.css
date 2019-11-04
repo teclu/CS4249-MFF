@@ -1,0 +1,16 @@
+
+.nested.MuiListItem-gutters{
+  padding-left: 30px;
+}
+.nested .MuiTypography-body1{
+  font-size: 0.85rem;
+
+}
+
+.categoryButton.MuiListItem-root.Mui-selected{
+  background-color: rgb(0, 133, 255);
+}
+
+.nested.MuiListItem-root.Mui-selected{
+  background-color: rgb(135, 180, 255);
+}

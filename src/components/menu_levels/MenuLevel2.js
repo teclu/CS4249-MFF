@@ -1,10 +1,11 @@
 import React from 'react';
 import queryString from 'query-string'
-import { AppBar, Box, Grid, Tab, Tabs, Modal, Button } from '@material-ui/core';
+import { Box, Grid, List, ListItem, ListItemText, Tab, Tabs, Modal, Button, Collapse } from '@material-ui/core';
 import Ingredient from '../Ingredient.js';
 import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
 import '../../css/components/Modal.css';
+import '../../css/components/MenuLevels.css';
 
 class MenuLevel2 extends React.Component {
     constructor(props) {
@@ -47,19 +48,27 @@ class MenuLevel2 extends React.Component {
     /*
      * Handles the change in Category and shows the correct Category content.
      */
-    handleChangeCategoryTab(event, newCategory) {
+    handleChangeCategoryTab(newCategory) {
+      if(this.state.category != newCategory){
         this.setState(state => {
             return {
-                category: newCategory,
-                subcategory: false
+                category: newCategory
             }
         });
+      }else{
+        this.setState(state => {
+            return {
+                category: false
+            }
+        });
+      }
     }
 
     /*
      * Handles the change in Subategory and shows the correct subcategory content.
      */
-    handleChangeSubcategoryTab(event, newSubcategory) {
+    handleChangeSubcategoryTab(newSubcategory) {
+      console.log(newSubcategory);
         this.setState(state => {
             return { subcategory: newSubcategory }
         });
@@ -72,21 +81,23 @@ class MenuLevel2 extends React.Component {
         let ingredientIndex = 0;
 
         const categoryTabLabelsToRender = [];
-        const componentsInCategoryToRender = [];
+        const componentsInSubcategoryToRender = [];
         // Create the Ingredient Components at the 1-Level
         for (const category in this.props.ingredients) {
             // First we create the Category Tab.
             categoryTabLabelsToRender.push(
-                <Tab key={categoryIndex} value={category} index={category} label={category} />
+              <ListItem button type="button" className="categoryButton" selected={category===this.state.category} value={category} key={category} onClick={()=>this.handleChangeCategoryTab(category)}>
+                <ListItemText primary={category} />
+              </ListItem>
             );
 
-          if (category === this.state.category){
             const subcategoryTabLabelsToRender = [];
-            const componentsInSubcategoryToRender = [];
             // We get all the subcategories under the Category
             for (const subcategory in this.props.ingredients[category]) {
               subcategoryTabLabelsToRender.push(
-                  <Tab key={subcategoryIndex} value={subcategory} index={subcategory} label={subcategory} />
+                <ListItem button type="button"  className='nested' selected={subcategory===this.state.subcategory} value={subcategory} key={subcategory} onClick={()=>this.handleChangeSubcategoryTab(subcategory)}>
+                  <ListItemText primary={subcategory} />
+                </ListItem>
               )
               if(subcategory === this.state.subcategory){
                   const ingredientsToRender = [];
@@ -100,7 +111,7 @@ class MenuLevel2 extends React.Component {
                     }
 
                     componentsInSubcategoryToRender.push(
-                        <div className="SubcategoryTab" key={subcategoryIndex} value={subcategory} index={subcategory} hidden={this.state.subcategory !== subcategory}>
+                        <div key={subcategoryIndex} value={subcategory} index={subcategory}>
                             <Grid container spacing={1}>
                                 {ingredientsToRender}
                             </Grid>
@@ -110,25 +121,15 @@ class MenuLevel2 extends React.Component {
                 subcategoryIndex++;
             }
 
-            // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
-              componentsInCategoryToRender.push(
-                <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                    <Grid container spacing={1}>
-                        <Grid item xs ={4}>
-                            <Tabs orientation="vertical" value={this.state.subcategory} onChange={this.handleChangeSubcategoryTab}>
-                                {subcategoryTabLabelsToRender}
-                            </Tabs>
-                        </Grid>
-                        <Grid item xs ={8}>
-                            {componentsInSubcategoryToRender}
-                        </Grid>
-                    </Grid>
-                </div>
+            categoryTabLabelsToRender.push(
+              <Collapse in={category === this.state.category} >
+                <List component="div" disablePadding>
+                  {subcategoryTabLabelsToRender}
+                </List>
+              </Collapse>
             );
-        }
         categoryIndex++;
       }
-
         return (
             <Box>
                  <Modal open={this.state.InstructionModalOpen}>
@@ -143,22 +144,29 @@ class MenuLevel2 extends React.Component {
                         <p>You have completed this task! Continue with the survey.</p>
                     </div>
                 </Modal>
-                <AppBar position="fixed">
-                    <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
-                        {categoryTabLabelsToRender}
-                    </Tabs>
-                </AppBar>
-                <div className="AppBarOffset"></div>
+
                 <Grid container spacing={1}>
                     <Grid item xs={9}>
-                        {componentsInCategoryToRender}
+                        <Grid container spacing={1}>
+                            <Grid item xs ={4}>
+                              <List component="nav" aria-labelledby="nested-list-subheader">
+                                  {categoryTabLabelsToRender}
+                              </List>
+                            </Grid>
+                            <Grid item xs ={8}>
+                                {componentsInSubcategoryToRender}
+                            </Grid>
+                        </Grid>
                     </Grid>
                     <Grid item xs={3}>
                         <SelectedList store={this.props.store} />
                         <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={2} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
                     </Grid>
                 </Grid>
-            </Box>
+
+
+
+          </Box>
         );
     }
 }
