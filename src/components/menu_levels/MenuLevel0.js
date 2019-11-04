@@ -17,9 +17,14 @@ class MenuLevel0 extends React.Component {
          */
         const queryStringParameters = queryString.parse(this.props.location.search);
         if (Object.entries(queryStringParameters).length !== 0) {
-            this.arrangement = queryStringParameters.Arrangement;
+            this.arrangement = queryStringParameters.Arrangement; // Alphabetical or Common
             this.categories = queryStringParameters.Categories;
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
+        }
+
+        this.categories = Object.keys(this.props.ingredients);
+        if (this.arrangement === "Alphabetical") {
+            this.categories.sort();
         }
 
         this.state = {
@@ -45,7 +50,7 @@ class MenuLevel0 extends React.Component {
         let ingredientIndex = 0;
 
         // Create the Ingredient Components at the 0-Level
-        for (const category in this.props.ingredients) {
+        for (const category of this.categories) {
             // First we create the Category title.
             componentsToRender.push(
                 <div key={category} className="CategoryTitle">{category}</div>

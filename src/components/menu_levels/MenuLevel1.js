@@ -27,6 +27,12 @@ class MenuLevel1 extends React.Component {
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
         }
 
+        this.categories = Object.keys(this.props.ingredients);
+        if (this.arrangement === "Alphabetical") {
+            this.categories.sort();
+        }
+        this.state.category = this.categories[0];
+
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
     }
 
@@ -56,9 +62,14 @@ class MenuLevel1 extends React.Component {
         const componentsInCategoryToRender = [];
         let categoryIndex = 0;
         let ingredientIndex = 0;
+        const categories = Object.keys(this.props.ingredients);
+
+        if (this.arrangement === "Alphabetical") {
+            categories.sort();
+        }
 
         // Create the Ingredient Components at the 1-Level
-        for (const category in this.props.ingredients) {
+        for (const category of categories) {
             // First we create the Category Tab.
             categoryTabLabelsToRender.push(
                 <Tab key={categoryIndex} value={category} index={category} label={category} />

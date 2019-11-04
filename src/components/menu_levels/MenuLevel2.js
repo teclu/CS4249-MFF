@@ -28,6 +28,12 @@ class MenuLevel2 extends React.Component {
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
         }
 
+        this.categories = Object.keys(this.props.ingredients);
+        if (this.arrangement === "Alphabetical") {
+            this.categories.sort();
+        }
+        this.state.category = this.categories[0];
+
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
         this.handleChangeSubcategoryTab = this.handleChangeSubcategoryTab.bind(this);
     }
@@ -74,17 +80,22 @@ class MenuLevel2 extends React.Component {
         const categoryTabLabelsToRender = [];
         const componentsInCategoryToRender = [];
         // Create the Ingredient Components at the 1-Level
-        for (const category in this.props.ingredients) {
+        for (const category of this.categories) {
             // First we create the Category Tab.
             categoryTabLabelsToRender.push(
                 <Tab key={categoryIndex} value={category} index={category} label={category} />
             );
 
-          if (category === this.state.category){
+          if (category === this.state.category) {
             const subcategoryTabLabelsToRender = [];
             const componentsInSubcategoryToRender = [];
+            const subcategories = Object.keys(this.props.ingredients[category]);
+            if (this.arrangement === "Alphabetical") {
+                subcategories.sort();
+            }
+
             // We get all the subcategories under the Category
-            for (const subcategory in this.props.ingredients[category]) {
+            for (const subcategory of subcategories) {
               subcategoryTabLabelsToRender.push(
                   <Tab key={subcategoryIndex} value={subcategory} index={subcategory} label={subcategory} />
               )
@@ -138,17 +149,20 @@ class MenuLevel2 extends React.Component {
                         <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
                     </div>
                 </Modal>
+
                 <Modal open={this.state.SubmitModalOpen}>
                     <div className="OverlayModal">
                         <p>You have completed this task! Continue with the survey.</p>
                     </div>
                 </Modal>
+
                 <AppBar position="fixed">
                     <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
                         {categoryTabLabelsToRender}
                     </Tabs>
                 </AppBar>
                 <div className="AppBarOffset"></div>
+
                 <Grid container spacing={1}>
                     <Grid item xs={9}>
                         {componentsInCategoryToRender}
