@@ -36,8 +36,8 @@ class Ingredient extends React.Component {
 
     render() {
         return (
-            <Grid item xs={this.props.isMenuLevel2 ? 4 : 3}>
-                {this.state.isSelected ? 
+            <Grid item xs={4}>
+                {this.state.isSelected ?
                     <Card id={this.props.id} onClick={this.handleChange}>
                         <CardContent style={{ background: "#ec407a", color: "white" }} className="Ingredient">{this.props.ingredientName}</CardContent>
                     </Card> :

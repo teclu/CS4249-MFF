@@ -1,6 +1,6 @@
 import React from 'react';
 import queryString from 'query-string'
-import { AppBar, Box, Grid, Tab, Tabs, Modal, Button } from '@material-ui/core';
+import { Box, List, ListItem, ListItemText, Grid, Tab, Tabs, Modal, Button } from '@material-ui/core';
 import Ingredient from '../Ingredient';
 import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
@@ -45,7 +45,7 @@ class MenuLevel1 extends React.Component {
     /*
      * Handles the change in Category and shows the correct Category content.
      */
-    handleChangeCategoryTab(event, newCategory) {
+    handleChangeCategoryTab(newCategory) {
         this.setState(state => {
             return { category: newCategory }
         });
@@ -61,7 +61,9 @@ class MenuLevel1 extends React.Component {
         for (const category in this.props.ingredients) {
             // First we create the Category Tab.
             categoryTabLabelsToRender.push(
-                <Tab key={categoryIndex} value={category} index={category} label={category} />
+                <ListItem button button type="button" className="categoryButton" selected={category===this.state.category} value={category} key={category} onClick={()=>this.handleChangeCategoryTab(category)}>
+                  <ListItemText primary={category} />
+                </ListItem>
             );
 
             // Only (re)render components of the currently selected category
@@ -77,7 +79,7 @@ class MenuLevel1 extends React.Component {
                 }
                 // Sort them
                 ingredientsPerCategory.sort();
-            
+
                 // Then add to the list of ingredient components
                 for (const ingredientName of ingredientsPerCategory) {
                     ingredientsToRender.push(
@@ -89,7 +91,7 @@ class MenuLevel1 extends React.Component {
                 // Finally we add all Ingredients to the Category content; this only gets shown if we click the Category Tab.
                 componentsInCategoryToRender.push(
                     <div className="CategoryTab" key={categoryIndex} value={category} index={category} hidden={this.state.category !== category}>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={1  }>
                             {ingredientsToRender}
                         </Grid>
                     </div>
@@ -112,15 +114,19 @@ class MenuLevel1 extends React.Component {
                         <p>You have completed this task! Continue with the survey.</p>
                     </div>
                 </Modal>
-                <AppBar position="fixed">
-                    <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
-                        {categoryTabLabelsToRender}
-                    </Tabs>
-                </AppBar>
-                <div className="AppBarOffset"></div>
-                <Grid container spacing={2}>
+
+                <Grid container spacing={1}>
                     <Grid item xs={9}>
-                        {componentsInCategoryToRender}
+                      <Grid container spacing={1}>
+                        <Grid item xs ={4}>
+                          <List component="nav" aria-labelledby="nested-list-subheader">
+                              {categoryTabLabelsToRender}
+                          </List>
+                        </Grid>
+                        <Grid item xs ={8}>
+                            {componentsInCategoryToRender}
+                        </Grid>
+                      </Grid>
                     </Grid>
                     <Grid item xs={3}>
                         <SelectedList store={this.props.store} />
