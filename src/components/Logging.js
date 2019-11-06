@@ -18,19 +18,9 @@ class Logging extends React.Component {
         else if (this.props.menuLevel === 1) {
             if (this.props.category_set.includes("Low")) {
                 this.idealClicks = 6;
-                // If they are on the first page, then there's no need to click on the tabs.
-                if ((this.props.arrangement === "Alphabetical" && (this.props.category_set.includes("_F") || this.props.category_set.includes("_H"))) ||
-                    (this.props.arrangement === "Common" && (this.props.category_set.includes("_A") || this.props.category_set.includes("_B")))) {
-                    this.idealClicks -= 1;
-                }
             }
             else if (this.props.category_set.includes("High")) {
                 this.idealClicks = 10;
-                // If they are on the first page, then there's no need to click on the tabs.
-                if ((this.props.arrangement === "Alphabetical" && (!this.props.category_set.includes("_B") && !this.props.category_set.includes("_I"))) ||
-                    (this.props.arrangement === "Common" && (!this.props.category_set.includes("_E") && !this.props.category_set.includes("_G") && !this.props.category_set.includes("_H") && !this.props.category_set.includes("_I")))) {
-                    this.idealClicks -= 1;
-                }
             }
         }
         else if (this.props.menuLevel === 2) {

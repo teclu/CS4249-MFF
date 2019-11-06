@@ -124,7 +124,7 @@ class MenuLevel1 extends React.Component {
                     </div>
                 </Modal>
                 <AppBar position="fixed">
-                    <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
+                    <Tabs TabIndicatorProps={{style: {background: '#fff'}}} value={this.state.category} onChange={this.handleChangeCategoryTab}>
                         {categoryTabLabelsToRender}
                     </Tabs>
                 </AppBar>

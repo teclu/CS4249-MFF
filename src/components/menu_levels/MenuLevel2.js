@@ -1,6 +1,6 @@
 import React from 'react';
 import queryString from 'query-string'
-import { AppBar, Box, Grid, Tab, Tabs, Modal, Button, Menu, MenuItem, ClickAwayListener } from '@material-ui/core';
+import { AppBar, Box, Grid, Tab, Tabs, Modal, Button, Menu, MenuItem, Popper } from '@material-ui/core';
 import Ingredient from '../Ingredient.js';
 import Logging from '../Logging.js';
 import SelectedList from '../SelectedList.js';
@@ -57,8 +57,8 @@ class MenuLevel2 extends React.Component {
      */
     handleChangeCategoryTab(event, newCategory) {
         this.setState({
-                category: newCategory,
-                anchorEl: event.currentTarget,
+            category: newCategory,
+            anchorEl: event.currentTarget,
         });
     }
 
@@ -109,7 +109,11 @@ class MenuLevel2 extends React.Component {
 
                     // Generate the menu items (subcategories)
                     subcategoryMenuItems.push(
-                        <MenuItem style={{height: 70, width: 250}} key={subcategory} onClick={() => this.handleChangeSubcategory(subcategory)}>{subcategory}</MenuItem>
+                        <MenuItem 
+                            style={ this.state.subcategory === subcategory ? { height: 70, width: 250, fontWeight: 'bold', color: '#3f51b5' } : { height: 70, width: 250 } }
+                            key={subcategory}
+                            onClick={() => this.handleChangeSubcategory(subcategory)}>{subcategory}
+                        </MenuItem>
                     );
 
                     if(subcategory === this.state.subcategory){
@@ -143,23 +147,23 @@ class MenuLevel2 extends React.Component {
 
                 // Generate the higher order menu component containing the subcategory menu items
                 subcategoryMenus.push(
-                    <Menu
-                        key={category}
-                        getContentAnchorEl={null}
-                        anchorEl={this.state.anchorEl}
-                        open={Boolean(this.state.anchorEl)}
-                        onClose={this.handleMenuClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-                        {subcategoryMenuItems}
-                    </Menu>
+                        <Menu
+                            key={category}
+                            getContentAnchorEl={null}
+                            anchorEl={this.state.anchorEl}
+                            open={Boolean(this.state.anchorEl)}
+                            onClose={this.handleMenuClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                            }}
+                            >
+                            {subcategoryMenuItems}
+                        </Menu>
                 );
             }
             categoryIndex++;
@@ -184,7 +188,7 @@ class MenuLevel2 extends React.Component {
                 {subcategoryMenus}
 
                 <AppBar position="fixed">
-                    <Tabs value={this.state.category} onChange={this.handleChangeCategoryTab}>
+                    <Tabs TabIndicatorProps={{style: {background: '#fff'}}} value={this.state.category} onChange={this.handleChangeCategoryTab}>
                         {categoryTabLabelsToRender}
                     </Tabs>
                 </AppBar>
