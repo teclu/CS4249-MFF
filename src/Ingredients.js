@@ -83,7 +83,7 @@ const Ingredients = JSON.parse(JSON.stringify({
             "Black Olives",
             "Green Olives"
         ],
-        "Tropical/Exotic": [
+        "Tropical": [
             "Avocado",
             "Banana",
             "Coconut",
@@ -194,7 +194,7 @@ const Ingredients = JSON.parse(JSON.stringify({
             "Squid"
         ]
     },
-    "Carbohydrates": {
+    "Carbs": {
         "Grain/Rice": [
             "Barley",
             "Black Rice",

@@ -10,7 +10,7 @@ class MenuLevel1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: "Vegetables",
+            category: false,
             InstructionModalOpen: true,
             SubmitModalOpen: false,
         };
@@ -31,7 +31,7 @@ class MenuLevel1 extends React.Component {
         if (this.arrangement === "Alphabetical") {
             this.categories.sort();
         }
-        this.state.category = this.categories[0];
+        // this.state.category = this.categories[0];
 
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
     }
@@ -72,7 +72,7 @@ class MenuLevel1 extends React.Component {
         for (const category of categories) {
             // First we create the Category Tab.
             categoryTabLabelsToRender.push(
-                <Tab key={categoryIndex} value={category} index={category} label={category} />
+                <Tab style={{minWidth: 110, width: 110}} key={categoryIndex} value={category} index={category} label={category} />
             );
 
             // Only (re)render components of the currently selected category
