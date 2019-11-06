@@ -10,5 +10,9 @@
 }
 
 .SelectedListItem:nth-child(even) {
-    background: #EEEEEE;
+    background-color: #c5cae9;
+}
+
+.SelectedListItem:nth-child(odd) {
+    background-color: #e8eaf6;
 }
