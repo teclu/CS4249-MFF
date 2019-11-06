@@ -10,7 +10,7 @@ class MenuLevel2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: "Vegetables",
+            category: false,
             subcategory: false,
             InstructionModalOpen: true,
             SubmitModalOpen: false,
@@ -25,7 +25,7 @@ class MenuLevel2 extends React.Component {
         const queryStringParameters = queryString.parse(this.props.location.search);
         if (Object.entries(queryStringParameters).length !== 0) {
             this.arrangement = queryStringParameters.Arrangement;
-            this.categories = queryStringParameters.Categories;
+            this.category_set = queryStringParameters.Categories;
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
         }
 
@@ -33,7 +33,7 @@ class MenuLevel2 extends React.Component {
         if (this.arrangement === "Alphabetical") {
             this.categories.sort();
         }
-        this.state.category = this.categories[0];
+        // this.state.category = this.categories[0];
 
         this.handleChangeCategoryTab = this.handleChangeCategoryTab.bind(this);
         this.handleChangeSubcategory = this.handleChangeSubcategory.bind(this);
@@ -86,11 +86,12 @@ class MenuLevel2 extends React.Component {
         const categoryTabLabelsToRender = [];
         const componentsInCategoryToRender = [];
         const subcategoryMenus = [];
+
         // Create the Ingredient Components at the 1-Level
         for (const category of this.categories) {
             // First we create the Category Tab.
             categoryTabLabelsToRender.push(
-                <Tab key={categoryIndex} value={category} index={category} label={category} />
+                <Tab style={{minWidth: 110, width: 110}} key={categoryIndex} value={category} index={category} label={category} />
             );
 
             if (category === this.state.category) {
@@ -108,7 +109,7 @@ class MenuLevel2 extends React.Component {
 
                     // Generate the menu items (subcategories)
                     subcategoryMenuItems.push(
-                        <MenuItem key={subcategory} onClick={() => this.handleChangeSubcategory(subcategory)}>{subcategory}</MenuItem>
+                        <MenuItem style={{height: 70, width: 250}} key={subcategory} onClick={() => this.handleChangeSubcategory(subcategory)}>{subcategory}</MenuItem>
                     );
 
                     if(subcategory === this.state.subcategory){
@@ -166,10 +167,10 @@ class MenuLevel2 extends React.Component {
 
         return (
             <Box>
-                 <Modal open={this.state.InstructionModalOpen}>
+                <Modal open={this.state.InstructionModalOpen}>
                     <div className="OverlayModal">
                         <p>When you click <b>Start</b>, the interface for the task will be revealed.</p>
-                        <div style={{marginBottom: "32px"}}>Click <b>Start</b> when you are ready!</div>
+                        <div style={{ marginBottom: "32px" }}>Click <b>Start</b> when you are ready!</div>
                         <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
                     </div>
                 </Modal>
@@ -196,7 +197,7 @@ class MenuLevel2 extends React.Component {
                     </Grid>
                     <Grid item xs={3}>
                         <SelectedList store={this.props.store} />
-                        <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={2} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
+                        {!this.state.InstructionModalOpen ? <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={2} arrangement={this.arrangement} category_set={this.category_set} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} /> : null}
                     </Grid>
                 </Grid>
             </Box>
