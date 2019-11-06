@@ -17,9 +17,14 @@ class MenuLevel0 extends React.Component {
          */
         const queryStringParameters = queryString.parse(this.props.location.search);
         if (Object.entries(queryStringParameters).length !== 0) {
-            this.arrangement = queryStringParameters.Arrangement;
-            this.categories = queryStringParameters.Categories;
+            this.arrangement = queryStringParameters.Arrangement; // Alphabetical or Common
+            this.category_set = queryStringParameters.Categories;
             this.mTurkWorkerID = queryStringParameters.mTurkWorkerID;
+        }
+
+        this.categories = Object.keys(this.props.ingredients);
+        if (this.arrangement === "Alphabetical") {
+            this.categories.sort();
         }
 
         this.state = {
@@ -45,7 +50,7 @@ class MenuLevel0 extends React.Component {
         let ingredientIndex = 0;
 
         // Create the Ingredient Components at the 0-Level
-        for (const category in this.props.ingredients) {
+        for (const category of this.categories) {
             // First we create the Category title.
             componentsToRender.push(
                 <div key={category} className="CategoryTitle">{category}</div>
@@ -75,7 +80,7 @@ class MenuLevel0 extends React.Component {
                 <Modal open={this.state.InstructionModalOpen}>
                     <div className="OverlayModal">
                         <p>When you click <b>Start</b>, the interface for the task will be revealed.</p>
-                        <div style={{marginBottom: "32px"}}>Click <b>Start</b> when you are ready!</div>
+                        <div style={{ marginBottom: "32px" }}>Click <b>Start</b> when you are ready!</div>
                         <Button variant="contained" color="primary" onClick={this.handleStartButtonClick.bind(this)}>Start</Button>
                     </div>
                 </Modal>
@@ -91,9 +96,9 @@ class MenuLevel0 extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid item xs={3}>
-                        <div style={{position: "fixed", width: "22.5%"}}>
+                        <div style={{ position: "fixed", width: "22.5%" }}>
                             <SelectedList store={this.props.store} />
-                            <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={0} arrangement={this.arrangement} categories={this.categories} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)}/>
+                            {!this.state.InstructionModalOpen ? <Logging mTurkWorkerID={this.mTurkWorkerID} store={this.props.store} menuLevel={0} arrangement={this.arrangement} category_set={this.category_set} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} /> : null}
                         </div>
                     </Grid>
                 </Grid>

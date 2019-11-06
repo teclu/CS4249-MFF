@@ -1,12 +1,5 @@
 const Ingredients = JSON.parse(JSON.stringify({
     "Vegetables": {
-        "Allium/Bulbs": [
-            "Garlic",
-            "Green Onions",
-            "Shallots",
-            "Scallions",
-            "Spring Onion"
-        ],
         "Leafy Greens": [
             "Bok Choy",
             "Spinach",
@@ -49,30 +42,27 @@ const Ingredients = JSON.parse(JSON.stringify({
             "Red Peppers",
             "Yellow Peppers"
         ],
-        "Roots": [
+        "Potato, Onions And Roots": [
             "Beetroot",
             "Carrot",
             "Turnip",
             "Daikon",
-            "Radish"
-        ],
-        "Stems": [
-            "Asparagus",
-            "Celery"
-        ],
-        "Tubers": [
+            "Garlic",
+            "Green Onions",
             "Potatoes",
+            "Shallots",
+            "Radish",
             "Sweet Potatoes",
             "Yam"
         ],
         "Fungi": [
-            "Button White",
-            "Swiss Brown",
-            "Enoki",
-            "Oyster",
-            "Portabello",
-            "Shiitake",
-            "Truffle"
+            "Button White Mushroom",
+            "Swiss Brown Mushroom",
+            "Enoki Mushroom",
+            "Oyster Mushroom",
+            "Portabello Mushroom",
+            "Shiitake Mushroom",
+            "Truffle Mushroom"
         ]
     },
     "Fruits": {
@@ -178,6 +168,68 @@ const Ingredients = JSON.parse(JSON.stringify({
             "Salami"
         ]
     },
+    "Seafood": {
+        "Fish": [
+            "Canned Tuna",
+            "Catfish",
+            "Cod",
+            "Haddock",
+            "Salmon",
+            "Tilapia",
+            "Tuna"
+        ],
+        "Crustaceans": [
+            "Crayfish",
+            "Crab",
+            "Lobster",
+            "Prawns",
+            "Shrimp"
+        ],
+        "Molluscs/Clams": [
+            "Clams",
+            "Cockles",
+            "Mussels",
+            "Octupus",
+            "Scallops",
+            "Squid"
+        ]
+    },
+    "Carbohydrates": {
+        "Grain/Rice": [
+            "Barley",
+            "Black Rice",
+            "Brown Rice",
+            "Granola",
+            "Oats/Oatmeal",
+            "White Rice",
+            "Wild Rice"
+        ],
+        "Pasta/Noodles": [
+            "Angel Hair Pasta",
+            "Bowtie Pasta",
+            "Egg Noodles",
+            "Elbow Macaroni Pasta",
+            "Fettuccine Noodles",
+            "Gnocchi",
+            "Ramen Noodles",
+            "Shell Noodles",
+            "Spaghetti Pasta",
+        ],
+        "Bread": [
+            "Bagels",
+            "Buns",
+            "Corn Bread",
+            "English Muffins",
+            "Flat Bread",
+            "French Bread",
+            "Italian Bread",
+            "Pita Bread",
+            "Rolls/Biscuits",
+            "Rye Bread",
+            "Wheat Grain Bread",
+            "White Bread"
+        ]
+    },
     "Beverages": {
         "Liquor": [
             "Apple Cider",
@@ -187,7 +239,7 @@ const Ingredients = JSON.parse(JSON.stringify({
             "Brandy",
             "Gin",
             "Kahlua",
-            "Pale Ale (e.g. Amberbock)",
+            "Pale Ale",
             "Rum",
             "Stout",
             "Tequila",
