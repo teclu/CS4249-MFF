@@ -72,8 +72,8 @@ class Logging extends React.Component {
         });
 
         // Get all the Ingredients that were specified but were not selected.
-        const ingredientsSpecifiedNotSelected = selectedList.filter(selectedIngredient => {
-            return !this.specifiedIngredients.includes(selectedIngredient);
+        const ingredientsSpecifiedNotSelected = this.specifiedIngredients.filter(specifiedIngredient => {
+            return !this.selectedList.includes(specifiedIngredient);
         });
 
         // Get all the ingredients that were not specified and were still selected.
